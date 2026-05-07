@@ -46,7 +46,7 @@ function renderMajorsChart() {
     mark: { type: "bar", cornerRadiusEnd: 4 },
     encoding: {
       y: { field: "company", type: "nominal", title: "企业", sort: "-x" },
-      x: { field: "emissions", type: "quantitative", title: "排放（GtCO2）" },
+      x: { field: "emissions", type: "quantitative", title: "排放（GtCO₂）" },
       color: { field: "sector", type: "nominal", title: "行业" },
       tooltip: [
         { field: "company", title: "企业" },
