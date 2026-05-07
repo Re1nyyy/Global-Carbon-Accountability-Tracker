@@ -1,0 +1,28 @@
+.narrative-trigger {
+  color: var(--color-accent);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.narrative-trigger:hover,
+.narrative-trigger.is-active {
+  color: #8f241c;
+  background: rgba(196, 59, 47, 0.08);
+}
+
+.section-insight {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--color-accent);
+  background: rgba(255, 253, 248, 0.78);
+  color: #3d3b36;
+  font-size: 15px;
+  box-shadow: 0 10px 28px rgba(48, 39, 25, 0.08);
+}
+
+.section-insight strong {
+  color: var(--color-text);
+}

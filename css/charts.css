@@ -1,0 +1,27 @@
+.chart {
+  width: 100%;
+  min-height: 420px;
+  padding: 18px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+  overflow-x: auto;
+}
+
+.chart .vega-embed {
+  width: 100%;
+}
+
+.chart details {
+  display: none;
+}
+
+.empty-state,
+.loading-state {
+  display: flex;
+  min-height: 280px;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  text-align: center;
+}

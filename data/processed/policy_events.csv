@@ -1,0 +1,11 @@
+country,iso3,year,policy_id,policy_name,policy_type,description,emissions_before,emissions_after,global_emissions
+Global,WLD,1990,,,,,22.7,22.7,22.7
+Global,WLD,1995,,,,,24.1,24.1,24.1
+Global,WLD,1997,kyoto-1997,Kyoto Protocol,International treaty,发达国家减排承诺框架正式形成,24.4,25.1,24.4
+Global,WLD,2000,,,,,25.1,25.1,25.1
+Global,WLD,2005,,,,,29.2,29.2,29.2
+Global,WLD,2010,,,,,33.3,33.3,33.3
+Global,WLD,2015,paris-2015,Paris Agreement,International treaty,各国提交自主贡献目标并形成长期温控框架,35.5,36.8,35.5
+Global,WLD,2018,,,,,36.6,36.6,36.6
+Global,WLD,2020,,,,,34.8,34.8,34.8
+Global,WLD,2022,,,,,36.8,36.8,36.8

@@ -1,0 +1,11 @@
+country,iso3,region,in_focus_group
+China,CHN,Asia,true
+United States,USA,North America,true
+Germany,DEU,Europe,true
+India,IND,Asia,true
+Japan,JPN,Asia,true
+United Kingdom,GBR,Europe,true
+France,FRA,Europe,true
+Brazil,BRA,South America,true
+South Africa,ZAF,Africa,true
+Australia,AUS,Oceania,true

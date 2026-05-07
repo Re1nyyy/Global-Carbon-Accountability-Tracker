@@ -1,0 +1,9 @@
+country,iso3,year,production_co2,consumption_co2,net_embodied_carbon,imported_carbon,exported_carbon
+China,CHN,2022,11.4,10.7,-0.7,1.2,1.9
+United States,USA,2022,5.1,5.8,0.7,1.3,0.6
+Germany,DEU,2022,0.67,0.82,0.15,0.28,0.13
+India,IND,2022,2.8,2.6,-0.2,0.25,0.45
+Japan,JPN,2022,1.0,1.15,0.15,0.24,0.09
+United Kingdom,GBR,2022,0.32,0.48,0.16,0.22,0.06
+France,FRA,2022,0.30,0.43,0.13,0.18,0.05
+Brazil,BRA,2022,0.49,0.46,-0.03,0.08,0.11

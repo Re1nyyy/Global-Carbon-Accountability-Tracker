@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>碳责任的四个视角</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/narrative.css">
+  <link rel="stylesheet" href="css/charts.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow">Interactive Climate Responsibility Document</p>
+      <h1>碳责任的四个视角</h1>
+      <p class="hero__dek">
+        经济增长、国际政策、贸易转移与企业排放分别揭示了碳责任的不同侧面。本页面采用四个互不依赖的交互模块，帮助读者从多个角度探索同一个问题。
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro-panel">
+      <div>
+        <h2>如何阅读</h2>
+        <p>
+          每个板块都是独立模块。点击正文中带下划线的关键词，只会改变本板块图表和说明文字，不会影响其他板块。
+        </p>
+      </div>
+    </section>
+
+    <section class="story-section" id="section-gdp">
+      <div class="section-copy">
+        <p class="section-kicker">视角一：宏观经济</p>
+        <h2>经济增长必须牺牲环境吗？</h2>
+        <p>
+          GDP 与排放的关系并不总是线性。点击
+          <span class="narrative-trigger" data-module="gdp" data-country="Germany">德国</span>、
+          <span class="narrative-trigger" data-module="gdp" data-country="China">中国</span>或
+          <span class="narrative-trigger" data-module="gdp" data-country="United States">美国</span>，
+          观察不同国家是否进入“经济增长而碳强度下降”的脱钩区域。
+        </p>
+        <div class="section-insight" id="insight-gdp"></div>
+      </div>
+      <div class="section-visual">
+        <div class="chart" id="chart-gdp" aria-label="GDP 与碳排放气泡图"></div>
+      </div>
+    </section>
+
+    <section class="story-section" id="section-policy">
+      <div class="section-copy">
+        <p class="section-kicker">视角二：政策干预</p>
+        <h2>国际协议是否改变排放趋势？</h2>
+        <p>
+          气候协议的意义不只在签署，也在签署前后的趋势变化。点击
+          <span class="narrative-trigger" data-module="policy" data-event="kyoto-1997">《京都议定书》</span>或
+          <span class="narrative-trigger" data-module="policy" data-event="paris-2015">《巴黎协定》</span>，
+          查看政策节点前后的排放变化。
+        </p>
+        <div class="section-insight" id="insight-policy"></div>
+      </div>
+      <div class="section-visual">
+        <div class="chart" id="chart-policy" aria-label="国际政策与排放变化图"></div>
+      </div>
+    </section>
+
+    <section class="story-section" id="section-trade">
+      <div class="section-copy">
+        <p class="section-kicker">视角三：贸易责任</p>
+        <h2>减排是真减少，还是责任转移？</h2>
+        <p>
+          一国领土内排放下降，不一定代表消费责任同步下降。点击
+          <span class="narrative-trigger" data-module="trade" data-metric="production">生产端排放</span>、
+          <span class="narrative-trigger" data-module="trade" data-metric="consumption">消费端排放</span>或
+          <span class="narrative-trigger" data-module="trade" data-metric="net">净进口碳</span>，
+          对比不同责任口径。
+        </p>
+        <div class="section-insight" id="insight-trade"></div>
+      </div>
+      <div class="section-visual">
+        <div class="chart" id="chart-trade" aria-label="生产端与消费端碳排放对比图"></div>
+      </div>
+    </section>
+
+    <section class="story-section" id="section-majors">
+      <div class="section-copy">
+        <p class="section-kicker">视角四：企业主体</p>
+        <h2>排放责任是否集中在少数企业？</h2>
+        <p>
+          国家之外，能源企业也是理解碳责任的重要入口。点击
+          <span class="narrative-trigger" data-module="majors" data-country="China">中国</span>、
+          <span class="narrative-trigger" data-module="majors" data-country="United States">美国</span>或
+          <span class="narrative-trigger" data-module="majors" data-country="Germany">德国</span>，
+          查看对应 Top 5 企业排放份额。
+        </p>
+        <div class="section-insight" id="insight-majors"></div>
+      </div>
+      <div class="section-visual">
+        <div class="chart" id="chart-majors" aria-label="头部企业排放排行图"></div>
+      </div>
+    </section>
+
+    <section class="methodology" id="methodology">
+      <h2>方法与说明</h2>
+      <div class="methodology-grid">
+        <article>
+          <h3>项目问题</h3>
+          <p>本作品尝试回答：当我们讨论碳责任时，经济、政策、贸易和企业分别揭示了哪些不同事实？</p>
+        </article>
+        <article>
+          <h3>设计决策</h3>
+          <p>四个模块技术上隔离，避免强制联动造成理解负担；每个模块保留文字触发图表的交互，强调解释性阅读体验。</p>
+        </article>
+        <article>
+          <h3>数据来源</h3>
+          <p>当前为演示用小样本数据。正式版建议替换为 OWID、Climate Policy Database、OECD TiVA 与 Carbon Majors Database 的清洗结果。</p>
+        </article>
+        <article>
+          <h3>开发流程</h3>
+          <p>四名成员按模块分工：GDP、政策、贸易、企业。公共页面、样式和工具函数由一名成员统一维护。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>大数据可视化与可视分析课程设计 · GitHub Pages 静态部署</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

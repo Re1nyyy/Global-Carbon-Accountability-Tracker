@@ -1,0 +1,16 @@
+country,iso3,company,sector,year,emissions,share,rank
+China,CHN,China Energy,Coal,2022,1.20,18.5,1
+China,CHN,PetroChina,Oil and gas,2022,0.86,13.2,2
+China,CHN,Sinopec,Oil and gas,2022,0.72,11.1,3
+China,CHN,China Coal,Coal,2022,0.48,7.4,4
+China,CHN,CNOOC,Oil and gas,2022,0.31,4.8,5
+United States,USA,ExxonMobil,Oil and gas,2022,0.58,14.0,1
+United States,USA,Chevron,Oil and gas,2022,0.42,10.1,2
+United States,USA,Peabody Energy,Coal,2022,0.27,6.5,3
+United States,USA,ConocoPhillips,Oil and gas,2022,0.22,5.3,4
+United States,USA,Occidental Petroleum,Oil and gas,2022,0.19,4.6,5
+Germany,DEU,RWE,Coal,2022,0.09,13.4,1
+Germany,DEU,Wintershall Dea,Oil and gas,2022,0.05,7.5,2
+Germany,DEU,LEAG,Coal,2022,0.04,6.0,3
+Germany,DEU,Uniper,Fossil power,2022,0.03,4.5,4
+Germany,DEU,VNG,Gas,2022,0.02,3.0,5
