@@ -58,11 +58,11 @@ function renderPolicyTimeline() {
   const maxEmission = Math.max(...emissions) + 0.4;
 
   const width = 960;
-  const height = 620;
-  const margin = { top: 70, right: 82, bottom: 182, left: 74 };
+  const height = 520;
+  const margin = { top: 58, right: 78, bottom: 146, left: 72 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
-  const eventRailY = height - 140;
+  const eventRailY = height - 112;
 
   const x = (year) => margin.left + ((year - minYear) / (maxYear - minYear)) * innerWidth;
   const y = (value) => margin.top + ((maxEmission - value) / (maxEmission - minEmission)) * innerHeight;
