@@ -1,16 +1,167 @@
-country,iso3,company,sector,year,emissions,share,rank
-China,CHN,China Energy,Coal,2022,1.20,18.5,1
-China,CHN,PetroChina,Oil and gas,2022,0.86,13.2,2
-China,CHN,Sinopec,Oil and gas,2022,0.72,11.1,3
-China,CHN,China Coal,Coal,2022,0.48,7.4,4
-China,CHN,CNOOC,Oil and gas,2022,0.31,4.8,5
-United States,USA,ExxonMobil,Oil and gas,2022,0.58,14.0,1
-United States,USA,Chevron,Oil and gas,2022,0.42,10.1,2
-United States,USA,Peabody Energy,Coal,2022,0.27,6.5,3
-United States,USA,ConocoPhillips,Oil and gas,2022,0.22,5.3,4
-United States,USA,Occidental Petroleum,Oil and gas,2022,0.19,4.6,5
-Germany,DEU,RWE,Coal,2022,0.09,13.4,1
-Germany,DEU,Wintershall Dea,Oil and gas,2022,0.05,7.5,2
-Germany,DEU,LEAG,Coal,2022,0.04,6.0,3
-Germany,DEU,Uniper,Fossil power,2022,0.03,4.5,4
-Germany,DEU,VNG,Gas,2022,0.02,3.0,5
+country,iso_num,company,sector,emissions,share,rank
+沙特阿拉伯,682,Saudi Aramco,油气,1.7863,100.0,1
+印度,356,Coal India,煤炭,1.6837,74.1,1
+中国,156,CHN Energy,煤炭,1.6792,15.6,1
+伊朗,364,National Iranian Oil Company,油气,1.3870,100.0,1
+俄罗斯,643,Gazprom,油气,1.2933,34.8,1
+中国,156,Jinneng Group,煤炭,1.1286,10.5,2
+中国,156,China (Cement),水泥,0.9500,8.8,3
+俄罗斯,643,Rosneft,油气,0.7631,20.6,2
+中国,156,CNPC,油气,0.7498,7.0,4
+中国,156,Shandong Energy,煤炭,0.7496,7.0,5
+中国,156,China National Coal Group,煤炭,0.7317,6.8,6
+中国,156,Shaanxi Coal and Chemical Industry Group,煤炭,0.6942,6.4,7
+美国,840,ExxonMobil,油气,0.6774,17.7,1
+阿联酋,784,Abu Dhabi National Oil Company,油气,0.6218,91.7,1
+美国,840,Chevron,油气,0.5767,15.0,2
+阿尔及利亚,12,Sonatrach,油气,0.5759,100.0,1
+伊拉克,368,Iraq National Oil Company,油气,0.5489,100.0,1
+中国,156,Shanxi Coking Coal Group,煤炭,0.5405,5.0,8
+卡塔尔,634,QatarEnergy,油气,0.4461,100.0,1
+英国,826,Shell,油气,0.4256,50.9,1
+科威特,414,Kuwait Petroleum Corp.,油气,0.4186,100.0,1
+巴西,76,Petrobras,油气,0.3999,100.0,1
+墨西哥,484,Pemex,油气,0.3777,95.7,1
+英国,826,BP,油气,0.3537,42.3,2
+美国,840,ConocoPhillips,油气,0.3524,9.2,3
+法国,250,TotalEnergies,油气,0.3523,100.0,1
+尼日利亚,566,Nigerian National Petroleum Corp.,油气,0.3368,100.0,1
+瑞士,756,Glencore,油气,0.3320,87.9,1
+俄罗斯,643,Lukoil,油气,0.3233,8.7,3
+中国,156,China Huaneng Group,煤炭,0.3001,2.8,9
+挪威,578,Equinor,油气,0.2960,65.2,1
+中国,156,CNOOC,油气,0.2930,2.7,10
+美国,840,Peabody Energy,煤炭,0.2613,6.8,4
+马来西亚,458,Petronas,油气,0.2596,100.0,1
+中国,156,Luan Chemical Group,煤炭,0.2587,2.4,11
+俄罗斯,643,Novatek,油气,0.2568,6.9,4
+俄罗斯,643,SUEK,煤炭,0.2560,6.9,5
+意大利,380,Eni,油气,0.2433,100.0,1
+土库曼斯坦,795,TurkmenGaz,油气,0.2370,100.0,1
+中国,156,State Power Investment Corporation,煤炭,0.2188,2.0,12
+中国,156,Sinopec,油气,0.2145,2.0,13
+哈萨克斯坦,398,Samruk-Kazyna,油气,0.2125,91.3,1
+中国,156,Liaoning Energy Industry Holding Group,煤炭,0.2094,1.9,14
+美国,840,Occidental Petroleum,油气,0.2091,5.5,5
+加拿大,124,Canadian Natural Resources,油气,0.2035,32.3,1
+中国,156,Xinjiang Tianchi Energy,煤炭,0.2008,1.9,15
+中国,156,Henan Energy and Chemical Industry Group,煤炭,0.1983,1.8,16
+委内瑞拉,862,Petroleos de Venezuela,油气,0.1922,100.0,1
+中国,156,Huaihe Energy Holding Group,煤炭,0.1902,1.8,17
+美国,840,Expand Energy,油气,0.1812,4.7,6
+美国,840,Core Natural Resources,煤炭,0.1805,4.7,7
+印度尼西亚,360,Bumi Resources,煤炭,0.1770,36.4,1
+安哥拉,24,Sonangol,油气,0.1743,100.0,1
+俄罗斯,643,Surgutneftegas,油气,0.1729,4.7,6
+中国,156,Huadian Coal Industry Group,煤炭,0.1703,1.6,18
+阿曼,512,Petroleum Development Oman,油气,0.1679,100.0,1
+美国,840,EQT Corporation,油气,0.1615,4.2,8
+美国,840,EOG Resources,油气,0.1591,4.2,9
+中国,156,Inner Mongolia Yitai Group,煤炭,0.1580,1.5,19
+挪威,578,Petoro,油气,0.1577,34.8,2
+中国,156,Jizhong Energy Resources,煤炭,0.1570,1.5,20
+印度尼西亚,360,Pertamina,油气,0.1567,32.2,2
+印度尼西亚,360,AlamTri Resources,煤炭,0.1526,31.4,3
+利比亚,434,Libya National Oil Corp.,油气,0.1501,100.0,1
+中国,156,Heilongjiang Longmay Mining Holding Group,煤炭,0.1395,1.3,21
+印度,356,Adani Group,煤炭,0.1391,6.1,2
+印度,356,Singareni Collieries,煤炭,0.1381,6.1,3
+南非,710,Seriti Resources,煤炭,0.1339,41.1,1
+中国,156,Inner Mongolia Dian Tou Energy,煤炭,0.1297,1.2,22
+中国,156,Inner Mongolia Huineng Coal and Electricity Group,煤炭,0.1265,1.2,23
+加拿大,124,Suncor Energy,油气,0.1205,19.1,2
+加拿大,124,Cenovus Energy,油气,0.1192,18.9,3
+俄罗斯,643,Kuzbassrazrezugol,煤炭,0.1178,3.2,7
+印度,356,ONGC,油气,0.1149,5.1,4
+泰国,764,PTTEP,油气,0.1124,50.6,1
+埃及,818,Egyptian General Petroleum,油气,0.1123,100.0,1
+中国,156,Huayang New Material Technology Group,煤炭,0.1120,1.0,24
+美国,840,Devon Energy,油气,0.1101,2.9,10
+泰国,764,Banpu,油气,0.1100,49.4,2
+哥伦比亚,170,Ecopetrol,油气,0.1096,100.0,1
+印度,356,NTPC,煤炭,0.1085,4.8,5
+美国,840,Coterra Energy,油气,0.1053,2.7,11
+澳大利亚,36,BHP,煤炭,0.1026,37.5,1
+美国,840,Diamondback Energy,油气,0.1020,2.7,12
+南非,710,Sasol,油气,0.0965,29.7,2
+南非,710,Exxaro Resources Ltd,煤炭,0.0952,29.2,3
+巴林,48,Bapco Energies,油气,0.0947,100.0,1
+日本,392,Mitsubishi Corporation,油气,0.0921,47.3,1
+中国,156,Kailuan Group,煤炭,0.0905,0.8,25
+加拿大,124,Tourmaline Oil,油气,0.0905,14.4,4
+日本,392,INPEX,油气,0.0904,46.4,2
+美国,840,Ovintiv,油气,0.0891,2.3,13
+西班牙,724,Repsol,油气,0.0885,100.0,1
+美国,840,Antero Resources,油气,0.0881,2.3,14
+卢森堡,442,Eurasian Resources Group,煤炭,0.0879,100.0,1
+俄罗斯,643,Elgaugol,煤炭,0.0822,2.2,8
+俄罗斯,643,Tatneft,油气,0.0820,2.2,9
+美国,840,Alliance Resource Partners,油气,0.0807,2.1,15
+澳大利亚,36,Woodside Energy,油气,0.0794,29.0,2
+中国,156,China Pingmei Shenma Holding Group,煤炭,0.0792,0.7,26
+阿根廷,32,YPF,油气,0.0750,100.0,1
+美国,840,American Consolidated Natural Resources,煤炭,0.0739,1.9,16
+乌兹别克斯坦,860,Uzbekneftegaz,油气,0.0723,100.0,1
+美国,840,Navajo Transitional Energy Company,煤炭,0.0719,1.9,17
+厄瓜多尔,218,PetroEcuador,油气,0.0699,100.0,1
+美国,840,APA Corporation,油气,0.0681,1.8,18
+美国,840,Continental Resources,油气,0.0649,1.7,19
+俄罗斯,643,Sibanthracite Group,煤炭,0.0620,1.7,10
+朝鲜,408,North Korea,煤炭,0.0608,100.0,1
+德国,276,RWE,煤炭,0.0587,44.1,1
+澳大利亚,36,Whitehaven Coal,煤炭,0.0572,20.9,3
+中国,156,Inner Mongolia Mengtai Group,煤炭,0.0568,0.5,27
+阿联酋,784,Mubadala,油气,0.0564,8.3,2
+中国,156,Huaibei Mining Group,煤炭,0.0557,0.5,28
+中国,156,Huating Coal Industry Group,煤炭,0.0551,0.5,29
+俄罗斯,643,EVRAZ,煤炭,0.0549,1.5,11
+中国,156,Inner Mongolia Yidong Resources Group,煤炭,0.0539,0.5,30
+加拿大,124,ARC Resources,油气,0.0537,8.5,5
+印度,356,UltraTech Cement,水泥,0.0528,2.3,6
+波兰,616,PGE Group,煤炭,0.0522,31.5,1
+奥地利,40,OMV,油气,0.0510,100.0,1
+中国,156,Xuzhou Mining Group,煤炭,0.0497,0.5,31
+乌克兰,804,DTEK,煤炭,0.0495,50.5,1
+英国,826,Anglo American,煤炭,0.0474,5.7,3
+波兰,616,Polska Grupa Gornicza (PGG),煤炭,0.0461,27.8,2
+瑞士,756,Holcim Group,水泥,0.0458,12.1,2
+俄罗斯,643,Stroyservis,煤炭,0.0424,1.1,12
+中国,156,Guizhou Panjiang Coal Power Group,煤炭,0.0419,0.4,32
+美国,840,Alpha Metallurgical Resources,煤炭,0.0417,1.1,20
+俄罗斯,643,En+ Group,煤炭,0.0410,1.1,13
+德国,276,Heidelberg Materials,水泥,0.0401,30.2,2
+美国,840,CNX Resources,油气,0.0398,1.0,21
+加拿大,124,Teck Resources,煤炭,0.0371,5.9,6
+乌克兰,804,Naftogaz,油气,0.0358,36.5,2
+澳大利亚,36,Santos,油气,0.0343,12.5,4
+德国,276,BASF,油气,0.0342,25.7,3
+印度,356,JSW,煤炭,0.0337,1.5,7
+波兰,616,Orlen,油气,0.0325,19.6,3
+美国,840,NACCO Industries,油气,0.0312,0.8,22
+俄罗斯,643,SDS Coal,煤炭,0.0295,0.8,14
+美国,840,Murphy Oil,油气,0.0280,0.7,23
+俄罗斯,643,Mechel,煤炭,0.0279,0.8,15
+美国,840,SM Energy,油气,0.0279,0.7,24
+俄罗斯,643,Severstal,煤炭,0.0247,0.7,16
+俄罗斯,643,Novaya Gornaya,煤炭,0.0245,0.7,17
+俄罗斯,643,Russian Coal,煤炭,0.0244,0.7,18
+波兰,616,LW Bogdanka,煤炭,0.0214,12.9,4
+哈萨克斯坦,398,Kazakhmys Holding Group,煤炭,0.0204,8.7,2
+俄罗斯,643,TALTEK,煤炭,0.0196,0.5,19
+捷克,203,Severoceske doly,煤炭,0.0187,54.2,1
+墨西哥,484,Cemex,水泥,0.0169,4.3,2
+爱尔兰,372,CRH,水泥,0.0152,100.0,1
+美国,840,Wolverine Fuels,煤炭,0.0150,0.4,25
+俄罗斯,643,Kuzbasskaya Toplivnaya,煤炭,0.0138,0.4,20
+波兰,616,Poludniowy Koncern Weglowy,煤炭,0.0134,8.1,5
+乌克兰,804,Metinvest,煤炭,0.0127,13.0,3
+日本,392,Taiheiyo Cement,水泥,0.0121,6.2,3
+美国,840,Westmoreland Mining,煤炭,0.0121,0.3,26
+美国,840,Kiewit Mining Group,煤炭,0.0119,0.3,27
+美国,840,Vistra,煤炭,0.0108,0.3,28
+叙利亚,760,Syrian Petroleum,油气,0.0097,100.0,1
+捷克,203,Sev.en Group,煤炭,0.0094,27.1,2
+英国,826,Tullow Oil,油气,0.0090,1.1,4
+加拿大,124,Obsidian Energy,油气,0.0056,0.9,7
+捷克,203,OKD,煤炭,0.0035,10.1,3
+捷克,203,Sokolovska uhelna,煤炭,0.0029,8.5,4
