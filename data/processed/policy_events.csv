@@ -1,11 +1,36 @@
-country,iso3,year,policy_id,policy_name,policy_type,description,emissions_before,emissions_after,global_emissions
-Global,WLD,1990,,,,,22.7,22.7,22.7
-Global,WLD,1995,,,,,24.1,24.1,24.1
-Global,WLD,1997,kyoto-1997,Kyoto Protocol,International treaty,发达国家减排承诺框架正式形成,24.4,25.1,24.4
-Global,WLD,2000,,,,,25.1,25.1,25.1
-Global,WLD,2005,,,,,29.2,29.2,29.2
-Global,WLD,2010,,,,,33.3,33.3,33.3
-Global,WLD,2015,paris-2015,Paris Agreement,International treaty,各国提交自主贡献目标并形成长期温控框架,35.5,36.8,35.5
-Global,WLD,2018,,,,,36.6,36.6,36.6
-Global,WLD,2020,,,,,34.8,34.8,34.8
-Global,WLD,2022,,,,,36.8,36.8,36.8
+country,iso3,year,policy_id,policy_name,policy_type,description,emissions_before,emissions_after,global_emissions,source_url
+Global,WLD,1990,,,,,,22.76,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1991,,,,,,23.25,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1992,,,,,,22.58,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1993,,,,,,22.77,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1994,,,,,,22.91,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1995,,,,,,23.45,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1996,,,,,,24.13,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1997,kyoto-1997,Kyoto Protocol adopted,International treaty,京都议定书在 COP3 通过并首次给发达经济体设定约束性减排目标,23.50,24.32,24.30,https://unfccc.int/process-and-meetings/the-kyoto-protocol/what-is-the-kyoto-protocol
+Global,WLD,1998,,,,,,24.21,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1999,,,,,,24.46,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2000,,,,,,25.11,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2001,,,,,,25.29,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2002,,,,,,25.58,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2003,,,,,,27.14,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2004,,,,,,28.56,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2005,kyoto-force-2005,Kyoto Protocol entered into force,Entry into force,京都议定书在复杂批准程序后正式生效,27.09,29.54,29.66,https://unfccc.int/process-and-meetings/the-kyoto-protocol/what-is-the-kyoto-protocol
+Global,WLD,2006,,,,,,30.60,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2007,,,,,,31.40,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2008,,,,,,32.03,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2009,copenhagen-2009,Copenhagen Accord,Political accord,哥本哈根会议推动主要经济体提交减排行动但法律约束较弱,31.34,33.36,31.57,https://unfccc.int/process-and-meetings/conferences/past-conferences/copenhagen-climate-change-conference-december-2009/copenhagen-climate-change-conference-december-2009
+Global,WLD,2010,,,,,,33.36,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2011,,,,,,34.49,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2012,doha-2012,Doha Amendment adopted,Amendment,Doha 修正案为京都议定书设定第二承诺期并覆盖 2013 至 2020 年,33.14,35.16,35.01,https://unfccc.int/process-and-meetings/the-kyoto-protocol
+Global,WLD,2013,,,,,,35.32,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2014,,,,,,35.54,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2015,paris-2015,Paris Agreement adopted,International treaty,巴黎协定在 COP21 通过并建立各国自主贡献和长期温控目标框架,35.29,35.66,35.50,https://unfccc.int/process-and-meetings/the-paris-agreement/what-is-the-paris-agreement
+Global,WLD,2016,paris-force-2016,Paris Agreement entered into force,Entry into force,巴黎协定达到生效门槛并于 2016 年 11 月正式生效,35.45,36.08,35.45,https://unfccc.int/process/the-paris-agreement/status-of-ratification
+Global,WLD,2017,,,,,,36.03,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2018,,,,,,36.77,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2019,,,,,,37.08,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2020,,,,,,34.82,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2021,glasgow-2021,Glasgow Climate Pact,COP decision,格拉斯哥气候公约强调逐步减少未加装减排设施的煤电并要求强化 2030 目标,36.22,37.58,36.82,https://unfccc.int/process-and-meetings/conferences/glasgow-climate-change-conference-october-november-2021/outcomes-of-the-glasgow-climate-change-conference
+Global,WLD,2022,,,,,,37.15,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2023,global-stocktake-2023,First Global Stocktake,COP decision,首次全球盘点评估巴黎协定落实进展并要求各国提高行动力度,36.60,37.80,37.79,https://unfccc.int/topics/global-stocktake
+Global,WLD,2024,,,,,,37.81,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
