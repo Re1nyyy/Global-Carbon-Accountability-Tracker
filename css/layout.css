@@ -56,20 +56,6 @@
   border-top: 1px solid var(--color-line);
 }
 
-.story-section--policy {
-  width: min(1320px, calc(100% - 40px));
-  grid-template-columns: minmax(300px, 0.62fr) minmax(620px, 1.38fr);
-  gap: 56px;
-}
-
-.story-section--policy .section-copy h2 {
-  font-size: clamp(34px, 4.5vw, 58px);
-}
-
-.story-section--policy .section-copy p {
-  font-size: 18px;
-}
-
 .section-copy {
   position: sticky;
   top: 28px;
@@ -110,7 +96,6 @@
 
 @media (max-width: 900px) {
   .story-section,
-  .story-section--policy,
   .methodology-grid {
     grid-template-columns: 1fr;
   }

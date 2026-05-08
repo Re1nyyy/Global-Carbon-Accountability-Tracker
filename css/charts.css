@@ -27,7 +27,7 @@
 }
 
 #chart-policy {
-  min-height: 650px;
+  min-height: 420px;
   padding: 0;
   border-color: #d8d7cf;
   background: #fbfaf5;
@@ -36,7 +36,7 @@
 }
 
 .policy-timeline {
-  padding: 26px 28px 22px;
+  padding: 20px 20px 18px;
 }
 
 .policy-timeline__header {
@@ -48,7 +48,7 @@
 }
 
 .policy-timeline__header p {
-  max-width: 720px;
+  max-width: 620px;
   margin: 0;
   color: #585953;
   font-size: 15px;
@@ -57,7 +57,7 @@
 .policy-timeline__header strong {
   color: var(--color-accent);
   font-family: var(--font-serif);
-  font-size: clamp(34px, 6vw, 58px);
+  font-size: clamp(30px, 5vw, 48px);
   line-height: 1;
 }
 
@@ -146,12 +146,12 @@
 }
 
 .policy-event--active .policy-event__dot {
-  fill: var(--color-accent);
+  fill: #f4d36c;
   stroke: #ffffff;
 }
 
 .policy-event--active .policy-event__year {
-  fill: var(--color-accent);
+  fill: #735f2d;
 }
 
 .policy-callout__line {
@@ -175,6 +175,12 @@
 .policy-callout__title {
   fill: #202124;
   font-size: 14px;
+  font-weight: 800;
+}
+
+.policy-callout__eyebrow {
+  fill: #7b7d76;
+  font-size: 11px;
   font-weight: 800;
 }
 
