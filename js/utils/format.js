@@ -9,9 +9,17 @@ export function formatNumber(value, digits = 1) {
 }
 
 export function formatGt(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) {
+    return "暂无数据";
+  }
+
   return `${formatNumber(value, 2)} GtCO2`;
 }
 
 export function formatPercent(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) {
+    return "暂无数据";
+  }
+
   return `${formatNumber(value, 1)}%`;
 }

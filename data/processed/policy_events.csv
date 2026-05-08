@@ -1,11 +1,36 @@
-country,iso3,year,policy_id,policy_name,policy_type,description,emissions_before,emissions_after,global_emissions
-Global,WLD,1990,,,,,22.7,22.7,22.7
-Global,WLD,1995,,,,,24.1,24.1,24.1
-Global,WLD,1997,kyoto-1997,Kyoto Protocol,International treaty,发达国家减排承诺框架正式形成,24.4,25.1,24.4
-Global,WLD,2000,,,,,25.1,25.1,25.1
-Global,WLD,2005,,,,,29.2,29.2,29.2
-Global,WLD,2010,,,,,33.3,33.3,33.3
-Global,WLD,2015,paris-2015,Paris Agreement,International treaty,各国提交自主贡献目标并形成长期温控框架,35.5,36.8,35.5
-Global,WLD,2018,,,,,36.6,36.6,36.6
-Global,WLD,2020,,,,,34.8,34.8,34.8
-Global,WLD,2022,,,,,36.8,36.8,36.8
+country,iso3,year,policy_id,policy_name,policy_name_zh,policy_type,description,emissions_before,emissions_after,global_emissions,source_url
+Global,WLD,1990,,,,,,,,22.76,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1991,,,,,,,,23.25,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1992,unfccc-1992,UNFCCC adopted,《联合国气候变化框架公约》通过,Framework convention,建立全球气候治理的基本框架，明确共同但有区别的责任原则。,22.93,22.86,22.58,https://unfccc.int/process-and-meetings/what-is-the-united-nations-framework-convention-on-climate-change
+Global,WLD,1993,,,,,,,,22.77,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1994,unfccc-force-1994,UNFCCC entered into force,《联合国气候变化框架公约》生效,Entry into force,公约正式生效，气候议题进入常设国际谈判进程。,22.87,23.50,22.91,https://unfccc.int/process-and-meetings/what-is-the-united-nations-framework-convention-on-climate-change
+Global,WLD,1995,cop1-berlin-1995,COP1 Berlin Mandate,柏林授权,COP decision,启动对发达国家更强减排承诺的谈判，为京都议定书铺路。,22.75,23.83,23.45,https://unfccc.int/cop4/resource/docs/cop1/07a01.pdf
+Global,WLD,1996,,,,,,,,24.13,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1997,kyoto-1997,Kyoto Protocol adopted,《京都议定书》通过,International treaty,首次为发达经济体设定具有约束力的温室气体减排目标。,23.50,24.32,24.30,https://unfccc.int/process-and-meetings/the-kyoto-protocol/what-is-the-kyoto-protocol
+Global,WLD,1998,,,,,,,,24.21,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,1999,,,,,,,,24.46,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2000,,,,,,,,25.11,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2001,marrakesh-2001,Marrakesh Accords,马拉喀什协定,COP decision,细化京都议定书执行规则，包括核算、履约和灵活机制。,24.59,25.99,25.29,https://unfccc.int/cop7/documents/accords_draft.pdf
+Global,WLD,2002,,,,,,,,25.58,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2003,,,,,,,,27.14,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2004,,,,,,,,28.56,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2005,kyoto-force-2005,Kyoto Protocol entered into force,《京都议定书》生效,Entry into force,京都议定书在复杂批准程序后正式生效。,27.09,29.54,29.66,https://unfccc.int/process-and-meetings/the-kyoto-protocol/what-is-the-kyoto-protocol
+Global,WLD,2006,,,,,,,,30.60,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2007,bali-2007,Bali Action Plan,巴厘行动计划,COP decision,开启后京都时代谈判，推动减缓、适应、资金和技术议题并行。,29.61,31.68,31.40,https://unfccc.int/process/conferences/the-big-picture/milestones/bali-road-map
+Global,WLD,2008,,,,,,,,32.03,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2009,copenhagen-2009,Copenhagen Accord,哥本哈根协议,Political accord,推动主要经济体提交减排行动，但法律约束较弱。,31.34,33.36,31.57,https://unfccc.int/process-and-meetings/conferences/past-conferences/copenhagen-climate-change-conference-december-2009/copenhagen-climate-change-conference-december-2009
+Global,WLD,2010,cancun-2010,Cancun Agreements,坎昆协议,COP decision,正式确认 2 摄氏度目标，并强化适应、资金和透明度安排。,32.83,34.39,33.36,https://unfccc.int/process/conferences/the-big-picture/milestones/the-cancun-agreements
+Global,WLD,2011,durban-2011,Durban Platform,德班平台,COP decision,启动谈判，目标是在 2015 年形成适用于所有缔约方的新协议。,33.40,34.79,34.49,https://unfccc.int/process/conferences/the-big-picture/milestones/durban-platform
+Global,WLD,2012,doha-2012,Doha Amendment adopted,Doha 修正案通过,Amendment,为京都议定书设定第二承诺期，覆盖 2013 至 2020 年。,33.14,35.16,35.01,https://unfccc.int/process-and-meetings/the-kyoto-protocol
+Global,WLD,2013,,,,,,,,35.32,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2014,lima-2014,Lima Call for Climate Action,利马气候行动呼吁,COP decision,明确各国提交自主贡献的基本方向，为巴黎协定铺路。,34.94,35.44,35.54,https://unfccc.int/process/conferences/the-big-picture/milestones/lima-call-for-climate-action
+Global,WLD,2015,paris-2015,Paris Agreement adopted,《巴黎协定》通过,International treaty,建立各国自主贡献和长期温控目标框架，推动全球共同参与减排。,35.29,35.66,35.50,https://unfccc.int/process-and-meetings/the-paris-agreement/what-is-the-paris-agreement
+Global,WLD,2016,paris-force-2016,Paris Agreement entered into force,《巴黎协定》生效,Entry into force,巴黎协定达到生效门槛，并于 2016 年 11 月正式生效。,35.45,36.08,35.45,https://unfccc.int/process/the-paris-agreement/status-of-ratification
+Global,WLD,2017,,,,,,,,36.03,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2018,katowice-2018,Katowice Climate Package,卡托维兹气候一揽子方案,Rulebook,确立巴黎协定实施细则和透明度规则。,35.66,36.22,36.77,https://unfccc.int/process-and-meetings/the-paris-agreement/katowice-climate-package
+Global,WLD,2019,,,,,,,,37.08,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2020,,,,,,,,34.82,https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+Global,WLD,2021,glasgow-2021,Glasgow Climate Pact,格拉斯哥气候公约,COP decision,强调逐步减少未加装减排设施的煤电，并要求强化 2030 目标。,36.22,37.58,36.82,https://unfccc.int/process-and-meetings/conferences/glasgow-climate-change-conference-october-november-2021/outcomes-of-the-glasgow-climate-change-conference
+Global,WLD,2022,sharm-2022,Loss and Damage Fund agreed,损失与损害基金达成,COP decision,就损失与损害基金达成突破性安排，回应气候脆弱国家诉求。,36.23,37.58,37.15,https://unfccc.int/cop27
+Global,WLD,2023,global-stocktake-2023,First Global Stocktake,首次全球盘点,COP decision,评估巴黎协定落实进展，并要求各国提高行动力度。,36.60,37.80,37.79,https://unfccc.int/topics/global-stocktake
+Global,WLD,2024,ncqg-2024,New Climate Finance Goal,新气候资金目标,COP decision,COP29 通过新的气候资金集体量化目标，将发达国家公共资金目标提高到每年 3000 亿美元。,37.25,37.81,37.81,https://unfccc.int/cop29
