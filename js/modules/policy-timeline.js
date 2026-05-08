@@ -10,6 +10,7 @@ const policyState = {
 
 let policyData = [];
 let policyEvents = [];
+let timelineScale = null;
 
 export async function initPolicyTimelineModule() {
   policyData = await loadCsv("data/processed/policy_events.csv");
@@ -65,6 +66,7 @@ function renderPolicyTimeline() {
 
   const x = (year) => margin.left + ((year - minYear) / (maxYear - minYear)) * innerWidth;
   const y = (value) => margin.top + ((maxEmission - value) / (maxEmission - minEmission)) * innerHeight;
+  timelineScale = { minYear, maxYear, x, y, plotLeft: margin.left, plotRight: width - margin.right };
 
   const visibleRows = policyData.filter((item) => item.year <= policyState.currentYear);
   const currentRow = nearestRow(policyState.currentYear);
@@ -82,10 +84,10 @@ function renderPolicyTimeline() {
         <rect class="policy-timeline__plot-bg" x="${margin.left}" y="${margin.top}" width="${innerWidth}" height="${innerHeight}"></rect>
         ${renderGrid(minYear, maxYear, minEmission, maxEmission, x, y, width, height, margin)}
         <path class="policy-timeline__line policy-timeline__line--ghost" d="${buildLinePath(policyData, x, y)}"></path>
-        <path class="policy-timeline__line" d="${buildLinePath(visibleRows, x, y)}"></path>
-        <line class="policy-timeline__cursor" x1="${x(policyState.currentYear)}" x2="${x(policyState.currentYear)}" y1="${margin.top}" y2="${eventRailY + 26}"></line>
+        <path class="policy-timeline__line" data-policy-line="visible" d="${buildLinePath(visibleRows, x, y)}"></path>
+        <line class="policy-timeline__cursor" data-policy-cursor x1="${x(policyState.currentYear)}" x2="${x(policyState.currentYear)}" y1="${margin.top}" y2="${eventRailY + 26}"></line>
         ${renderEventRail(x, eventRailY, activeEvent)}
-        <circle class="policy-timeline__year-dot" cx="${x(currentRow.year)}" cy="${y(currentRow.global_emissions)}" r="7"></circle>
+        <circle class="policy-timeline__year-dot" data-policy-dot cx="${x(currentRow.year)}" cy="${y(currentRow.global_emissions)}" r="7"></circle>
         ${activeEvent ? renderActiveCallout(activeEvent, currentRow, x, y, width) : ""}
         <text class="policy-timeline__axis-title" x="${width - 18}" y="${margin.top + 8}" transform="rotate(90 ${width - 18} ${margin.top + 8})">全球 CO2 排放（GtCO2）</text>
       </svg>
@@ -145,7 +147,7 @@ function renderEventRail(x, railY, activeEvent) {
         <g class="policy-event${isActive ? " policy-event--active" : ""}" data-policy-id="${event.policy_id}" tabindex="0" role="button" aria-label="${event.policy_name}">
           <line class="policy-event__stem" x1="${x(event.year)}" x2="${x(event.year)}" y1="${railY}" y2="${railY + stem}"></line>
           <circle class="policy-event__dot" cx="${x(event.year)}" cy="${railY + stem}" r="${isActive ? 8 : 5}"></circle>
-          <text class="policy-event__year" x="${x(event.year)}" y="${railY + stem + (stem < 0 ? -10 : 22)}" text-anchor="middle">${event.year}</text>
+          ${isActive ? `<text class="policy-event__year" x="${x(event.year)}" y="${railY + stem + (stem < 0 ? -10 : 22)}" text-anchor="middle">${event.year}</text>` : ""}
         </g>
       `;
     }).join("")}
@@ -153,9 +155,8 @@ function renderEventRail(x, railY, activeEvent) {
 }
 
 function renderActiveCallout(event, currentRow, x, y, width) {
-  const row = nearestRow(event.year);
-  const pointX = x(event.year);
-  const pointY = y(row.global_emissions);
+  const pointX = x(currentRow.year);
+  const pointY = y(currentRow.global_emissions);
   const boxWidth = 286;
   const boxHeight = 96;
   const boxX = pointX > width - 390 ? pointX - boxWidth - 28 : pointX + 28;
@@ -166,8 +167,9 @@ function renderActiveCallout(event, currentRow, x, y, width) {
     <g class="policy-callout">
       <line class="policy-callout__line" x1="${boxX + (boxX > pointX ? 0 : boxWidth)}" y1="${boxY + boxHeight / 2}" x2="${pointX}" y2="${pointY}"></line>
       <rect class="policy-callout__box" x="${boxX}" y="${boxY}" width="${boxWidth}" height="${boxHeight}" rx="8"></rect>
-      <text class="policy-callout__year" x="${boxX + 16}" y="${boxY + 24}">${event.year}</text>
-      <text class="policy-callout__title" x="${boxX + 16}" y="${boxY + 48}">
+      <text class="policy-callout__year" x="${boxX + 16}" y="${boxY + 24}">${currentRow.year}</text>
+      <text class="policy-callout__eyebrow" x="${boxX + 82}" y="${boxY + 24}">最近政策节点</text>
+      <text class="policy-callout__title" x="${boxX + 16}" y="${boxY + 50}">
         ${titleLines.map((line, index) => `<tspan x="${boxX + 16}" dy="${index === 0 ? 0 : 18}">${line}</tspan>`).join("")}
       </text>
       <text class="policy-callout__metric" x="${boxX + 16}" y="${boxY + 84}">${formatGt(currentRow.global_emissions)}</text>
@@ -193,7 +195,12 @@ function bindTimelineControls(minYear, maxYear, plotLeft, plotRight) {
   const backButton = document.querySelector('[data-policy-control="back"]');
   const latestButton = document.querySelector('[data-policy-control="latest"]');
 
-  slider?.addEventListener("input", () => updateCurrentYear(Number(slider.value)));
+  slider?.addEventListener("input", () => updateCurrentYear(Number(slider.value), { soft: true }));
+  slider?.addEventListener("change", () => {
+    syncSelectedEventToYear(policyState.currentYear);
+    renderPolicyTimeline();
+    updatePolicyInsight();
+  });
   backButton?.addEventListener("click", () => updateCurrentYear(minYear));
   latestButton?.addEventListener("click", () => updateCurrentYear(maxYear));
 
@@ -219,7 +226,7 @@ function bindTimelineControls(minYear, maxYear, plotLeft, plotRight) {
     const svgPoint = point.matrixTransform(svg.getScreenCTM().inverse());
     const ratio = Math.max(0, Math.min(1, (svgPoint.x - plotLeft) / (plotRight - plotLeft)));
     const year = Math.round(minYear + ratio * (maxYear - minYear));
-    updateCurrentYear(year);
+    updateCurrentYear(year, { soft: true });
   };
 
   svg.addEventListener("pointerdown", (event) => {
@@ -237,18 +244,68 @@ function bindTimelineControls(minYear, maxYear, plotLeft, plotRight) {
   svg.addEventListener("pointerup", (event) => {
     dragging = false;
     svg.releasePointerCapture(event.pointerId);
+    syncSelectedEventToYear(policyState.currentYear);
+    renderPolicyTimeline();
+    updatePolicyInsight();
   });
 }
 
-function updateCurrentYear(year) {
+function updateCurrentYear(year, options = {}) {
   policyState.currentYear = year;
+
+  if (options.soft) {
+    updateTimelineInPlace();
+    updatePolicyInsight();
+    return;
+  }
+
+  syncSelectedEventToYear(year);
+  renderPolicyTimeline();
+  updatePolicyInsight();
+}
+
+function syncSelectedEventToYear(year) {
   const eventAtYear = policyEvents.find((event) => event.year === year);
   if (eventAtYear) {
     policyState.selectedEvent = eventAtYear.policy_id;
   }
+}
 
-  renderPolicyTimeline();
-  updatePolicyInsight();
+function updateTimelineInPlace() {
+  if (!timelineScale) {
+    return;
+  }
+
+  syncSelectedEventToNearestPast(policyState.currentYear);
+
+  const { x, y } = timelineScale;
+  const currentRow = nearestRow(policyState.currentYear);
+  const visibleRows = policyData.filter((item) => item.year <= policyState.currentYear);
+  const line = document.querySelector('[data-policy-line="visible"]');
+  const cursor = document.querySelector("[data-policy-cursor]");
+  const dot = document.querySelector("[data-policy-dot]");
+  const headerYear = document.querySelector(".policy-timeline__header strong");
+  const caption = document.querySelector(".policy-timeline__caption");
+  const slider = document.querySelector(".policy-timeline__slider");
+  const latestEvent = latestVisibleEvent();
+
+  line?.setAttribute("d", buildLinePath(visibleRows, x, y));
+  cursor?.setAttribute("x1", x(policyState.currentYear));
+  cursor?.setAttribute("x2", x(policyState.currentYear));
+  dot?.setAttribute("cx", x(currentRow.year));
+  dot?.setAttribute("cy", y(currentRow.global_emissions));
+
+  if (headerYear) {
+    headerYear.textContent = policyState.currentYear;
+  }
+
+  if (slider && Number(slider.value) !== policyState.currentYear) {
+    slider.value = policyState.currentYear;
+  }
+
+  if (caption) {
+    caption.innerHTML = `当前年份：<strong>${policyState.currentYear}</strong>。全球排放约为 <strong>${formatGt(currentRow.global_emissions)}</strong>${latestEvent ? `；最近政策节点：<strong>${eventName(latestEvent)}</strong>` : "。"}`;
+  }
 }
 
 function nearestRow(year) {
@@ -261,6 +318,16 @@ function latestVisibleEvent() {
   return [...policyEvents]
     .filter((event) => event.year <= policyState.currentYear)
     .sort((a, b) => b.year - a.year)[0];
+}
+
+function syncSelectedEventToNearestPast(year) {
+  const nearestPast = [...policyEvents]
+    .filter((event) => event.year <= year)
+    .sort((a, b) => b.year - a.year)[0];
+
+  if (nearestPast) {
+    policyState.selectedEvent = nearestPast.policy_id;
+  }
 }
 
 function updatePolicyInsight() {

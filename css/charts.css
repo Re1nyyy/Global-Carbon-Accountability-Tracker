@@ -146,12 +146,12 @@
 }
 
 .policy-event--active .policy-event__dot {
-  fill: var(--color-accent);
+  fill: #f4d36c;
   stroke: #ffffff;
 }
 
 .policy-event--active .policy-event__year {
-  fill: var(--color-accent);
+  fill: #735f2d;
 }
 
 .policy-callout__line {
@@ -175,6 +175,12 @@
 .policy-callout__title {
   fill: #202124;
   font-size: 14px;
+  font-weight: 800;
+}
+
+.policy-callout__eyebrow {
+  fill: #7b7d76;
+  font-size: 11px;
   font-weight: 800;
 }
 
