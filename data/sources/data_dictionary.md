@@ -19,6 +19,7 @@
 
 - `policy_id`: 政策节点 ID。
 - `policy_name`: 政策名称。
+- `policy_name_zh`: 政策中文显示名称。
 - `policy_type`: 政策类型。
 - `description`: 政策说明。
 - `emissions_before`: 政策节点前三年全球 CO2 排放均值，单位为 GtCO2。

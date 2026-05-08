@@ -26,3 +26,29 @@
 .section-insight strong {
   color: var(--color-text);
 }
+
+.policy-quick-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.policy-chip {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(196, 59, 47, 0.35);
+  background: rgba(255, 253, 248, 0.84);
+  color: var(--color-accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.policy-chip:hover,
+.policy-chip.is-active {
+  border-color: var(--color-accent);
+  background: rgba(196, 59, 47, 0.1);
+}
