@@ -51,7 +51,9 @@ const ISO_TO_ZH = {
 
 let majorsData = [];
 let globalAvg = 0;
-let vegaView = null;
+let vegaViewMap = null;
+let vegaViewBar = null;
+let currentSelectedCountry = null;
 let countryMap = [];
 let sectorDomain = [];
 let sectorRange = [];
@@ -114,115 +116,167 @@ export async function initCarbonMajorsModule() {
   sectorDomain = sectors;
   sectorRange = sectors.map((_, i) => SECTOR_PALETTE[i % SECTOR_PALETTE.length]);
 
-  await renderVconcat();
+  try { await renderBoth(); } catch (e) { console.error("[carbon-majors] renderBoth failed:", e); }
   syncAll("World");
 }
 
-async function renderVconcat() {
+async function renderBoth() {
+  try { await renderMap(); } catch (e) { console.error("[carbon-majors] renderMap failed:", e); }
+  try { await renderBar(); } catch (e) { console.error("[carbon-majors] renderBar failed:", e); }
+  setupToggle();
+}
+
+async function renderMap() {
   const spec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-    vconcat: [
+    width: "container",
+    height: 500,
+    autosize: { type: "fit-x", contains: "padding" },
+    padding: { left: 10, right: 40, top: 10, bottom: 10 },
+    data: { url: "https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/world-110m.json", format: { type: "topojson", feature: "countries" } },
+    transform: [
+      { lookup: "id", from: { data: { values: countryMap }, key: "iso_num", fields: ["country", "has_data", "total_emissions"] } },
+      { calculate: "datum.has_data ? '有上榜企业' : '无上榜记录'", as: "data_status" }
+    ],
+    projection: { type: "equalEarth" },
+    params: [
+      { name: "click_country", select: { type: "point", fields: ["country"] } }
+    ],
+    mark: { type: "geoshape" },
+    encoding: {
+      color: {
+        condition: { test: "!datum.has_data", value: "#e8e4dd" },
+        field: "total_emissions",
+        type: "quantitative",
+        scale: { scheme: "oranges", type: "symlog" },
+        legend: { title: "国家上榜巨头总排量 (GtCO₂)", orient: "bottom", format: ".1f" }
+      },
+      fillOpacity: {
+        condition: [
+          { param: "click_country", empty: true, value: 1 },
+          { param: "click_country", empty: false, value: 1 }
+        ],
+        value: 0.35
+      },
+      stroke: {
+        condition: { param: "click_country", empty: false, value: "#00e5ff" },
+        value: "#ffffff"
+      },
+      strokeWidth: {
+        condition: { param: "click_country", empty: false, value: 2.5 },
+        value: 0.5
+      },
+      tooltip: [
+        { field: "country", type: "nominal", title: "国家" },
+        { field: "data_status", type: "nominal", title: "巨头总部" },
+        { field: "total_emissions", type: "quantitative", title: "总排量 (GtCO₂)", format: ".2f" }
+      ]
+    },
+    config: { view: { stroke: null } }
+  };
+
+  const result = await vegaEmbed("#vis-majors-map", spec, { actions: false });
+  vegaViewMap = result.view;
+
+  vegaViewMap.addSignalListener("click_country", (_, value) => {
+    console.log("[carbon-majors] map clicked:", value);
+    const selected = extractCountry(value);
+    console.log("[carbon-majors] extracted country:", selected);
+    currentSelectedCountry = selected;
+    syncAll(selected || "World");
+    syncBarSelection(selected);
+  });
+}
+
+async function renderBar() {
+  const spec = {
+    $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+    width: "container",
+    height: 450,
+    autosize: { type: "fit-x", contains: "padding" },
+    padding: { left: 10, right: 40, top: 10, bottom: 10 },
+    data: { values: majorsData },
+    params: [
+      { name: "selected_country", value: null }
+    ],
+    transform: [
+      { filter: "selected_country == null || datum.country == selected_country" },
+      { window: [{ op: "rank", as: "rank" }], sort: [{ field: "emissions", order: "descending" }] },
+      { filter: "datum.rank <= 5" }
+    ],
+    layer: [
       {
-        // 上半部分：分级统计地图 (Choropleth)
-        width: 600, height: 300,
-        data: { url: "https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/world-110m.json", format: { type: "topojson", feature: "countries" } },
-        transform: [
-          { lookup: "id", from: { data: { values: countryMap }, key: "iso_num", fields: ["country", "has_data", "total_emissions"] } },
-          { calculate: "datum.has_data ? '有上榜企业' : '无上榜记录'", as: "data_status" }
-        ],
-        projection: { type: "equalEarth" },
-        params: [
-          { name: "click_country", select: { type: "point", fields: ["country"] } }
-        ],
-        mark: { type: "geoshape" },
+        mark: { type: "bar", cornerRadiusEnd: 4, size: 30 },
         encoding: {
+          y: { field: "company", type: "nominal", sort: "-x", title: null, axis: { labelLimit: 150 } },
+          x: { field: "emissions", type: "quantitative", title: "排放（GtCO₂）" },
           color: {
-            condition: { test: "!datum.has_data", value: "#e8e4dd" },
-            field: "total_emissions",
-            type: "quantitative",
-            scale: { scheme: "oranges", type: "symlog" },
-            legend: { title: "国家上榜巨头总排量 (GtCO₂)", orient: "bottom", format: ".1f" }
+            field: "sector", type: "nominal", title: "行业",
+            scale: { domain: sectorDomain, range: sectorRange }
           },
-          fillOpacity: {
-            condition: [
-              { param: "click_country", empty: true, value: 1 },
-              { param: "click_country", empty: false, value: 1 }
-            ],
-            value: 0.35
-          },
-          stroke: {
-            condition: { param: "click_country", empty: false, value: "#00e5ff" },
-            value: "#ffffff"
-          },
-          strokeWidth: {
-            condition: { param: "click_country", empty: false, value: 2.5 },
-            value: 0.5
-          },
-          tooltip: [
-            { field: "country", type: "nominal", title: "国家" },
-            { field: "data_status", type: "nominal", title: "巨头总部" },
-            { field: "total_emissions", type: "quantitative", title: "总排量 (GtCO₂)", format: ".2f" }
-          ]
+          tooltip: [{ field: "company", title: "企业" }, { field: "country", title: "所属国家" }, { field: "emissions", title: "排放" }]
         }
       },
       {
-        // 下半部分：Top 5 柱状图 + 全球平均基准线（layer 结构）
-        width: 600, height: 280,
-        layer: [
-          {
-            // Layer 1: 柱状图
-            data: { values: majorsData },
-            transform: [
-              { filter: { param: "click_country" } },
-              { window: [{ op: "rank", as: "rank" }], sort: [{ field: "emissions", order: "descending" }] },
-              { filter: "datum.rank <= 5" }
-            ],
-            mark: { type: "bar", cornerRadiusEnd: 4, size: 30 },
-            encoding: {
-              y: { field: "company", type: "nominal", sort: "-x", title: null, axis: { labelLimit: 150 } },
-              x: { field: "emissions", type: "quantitative", title: "排放（GtCO₂）" },
-              color: {
-                field: "sector", type: "nominal", title: "行业",
-                scale: { domain: sectorDomain, range: sectorRange }
-              },
-              tooltip: [{ field: "company", title: "企业" }, { field: "country", title: "所属国家" }, { field: "emissions", title: "排放" }]
-            }
-          },
-          {
-            // Layer 2: 全球平均基准线（红色虚线）
-            data: { values: [{ baseline: globalAvg }] },
-            mark: { type: "rule", color: "#e41a1c", strokeDash: [4, 4], size: 2 },
-            encoding: {
-              x: { field: "baseline", type: "quantitative" },
-              tooltip: { field: "baseline", type: "quantitative", title: "全球平均水平 (GtCO₂)", format: ".2f" }
-            }
-          },
-          {
-            // Layer 3: 基准线文字标签
-            data: { values: [{ baseline: globalAvg }] },
-            mark: { type: "text", color: "#e41a1c", align: "right", dx: -8, dy: -14, fontSize: 11, fontWeight: "bold" },
-            encoding: {
-              x: { field: "baseline", type: "quantitative" },
-              y: { value: 0 },
-              text: { value: "全球上榜巨头平均水平" }
-            }
-          }
-        ]
+        data: { values: [{ baseline: globalAvg }] },
+        mark: { type: "rule", color: "#e41a1c", strokeDash: [4, 4], size: 2 },
+        encoding: {
+          x: { field: "baseline", type: "quantitative" },
+          tooltip: { field: "baseline", type: "quantitative", title: "全球平均水平 (GtCO₂)", format: ".2f" }
+        }
+      },
+      {
+        data: { values: [{ baseline: globalAvg }] },
+        mark: { type: "text", color: "#e41a1c", align: "right", dx: -8, dy: -14, fontSize: 11, fontWeight: "bold" },
+        encoding: {
+          x: { field: "baseline", type: "quantitative" },
+          y: { value: 0 },
+          text: { value: "全球上榜巨头平均水平" }
+        }
       }
     ],
     config: { view: { stroke: null } }
   };
 
-  const result = await vegaEmbed("#vis-majors", spec, { actions: false });
-  vegaView = result.view;
+  const result = await vegaEmbed("#vis-majors-bar", spec, { actions: false });
+  vegaViewBar = result.view;
+}
 
-  vegaView.addSignalListener("click_country", (_, value) => {
-    console.log("[carbon-majors] raw signal value:", value);
-    const selected = extractCountry(value);
-    console.log("[carbon-majors] extracted country:", selected);
-    syncAll(selected || "World");
+function syncBarSelection(country) {
+  if (!vegaViewBar) return;
+  try {
+    vegaViewBar.signal("selected_country", country || null).runAsync();
+  } catch (e) {
+    console.error("[carbon-majors] syncBarSelection failed:", e);
+  }
+}
+
+function setupToggle() {
+  const buttons = document.querySelectorAll(".chart-toggle-btn");
+  if (buttons.length === 0) {
+    console.warn("[carbon-majors] no toggle buttons found in DOM");
+    return;
+  }
+
+  const containers = {
+    map: document.getElementById("vis-majors-map"),
+    bar: document.getElementById("vis-majors-bar")
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.view;
+      if (!target) return;
+
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      Object.entries(containers).forEach(([name, el]) => {
+        if (!el) return;
+        el.classList.toggle("active", name === target);
+      });
+    });
   });
-
 }
 
 function extractCountry(signalValue) {
