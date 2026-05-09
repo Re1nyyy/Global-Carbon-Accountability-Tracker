@@ -65,6 +65,47 @@
   min-width: 0;
 }
 
+.gdp-page-section {
+  grid-template-columns: minmax(420px, 1.08fr) minmax(440px, 0.92fr);
+  gap: 36px;
+  padding-top: 48px;
+}
+
+.gdp-page-section .section-copy {
+  position: static;
+}
+
+.gdp-page-section .section-visual {
+  position: sticky;
+  top: 22px;
+}
+
+.narrative-summary {
+  margin: 22px 0;
+  padding: 18px 20px;
+  border-left: 4px solid var(--color-accent);
+  background: rgba(255, 253, 248, 0.76);
+}
+
+.narrative-summary h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.narrative-summary p {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.narrative-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.gdp-scroll-step {
+  scroll-margin-top: 120px;
+}
+
 .trade-story {
   grid-template-columns: minmax(300px, 0.76fr) minmax(520px, 1.24fr);
   align-items: start;
@@ -291,6 +332,10 @@
   }
 
   .trade-visual {
+    position: static;
+  }
+
+  .gdp-page-section .section-visual {
     position: static;
   }
 

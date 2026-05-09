@@ -1,5 +1,18 @@
 # References
 
+## GDP Emissions Module
+
+### Data Sources
+- Our World in Data, CO2 and Greenhouse Gas Emissions dataset.
+- Our World in Data, Population.
+- Our World in Data, GDP in international dollars.
+
+### Methodology Notes
+- `gdp_emissions.csv` 覆盖 19 个主要经济体的 1995-2022 年五年窗口变化。
+- GDP 使用 PPP 口径，单位在数据字典中记录为十亿美元。
+- CO2 排放统一换算为 GtCO2，并计算人均排放、碳强度和五年增长率。
+- 脱钩状态根据 GDP 五年增长率与 CO2 五年增长率的相对关系分类。
+
 ## Carbon Majors Module
 
 ### Data Sources
