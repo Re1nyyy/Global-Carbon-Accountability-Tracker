@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -76,21 +76,41 @@
       </div>
     </section>
 
-    <section class="story-section" id="section-trade">
-      <div class="section-copy">
+    <section class="story-section trade-story" id="section-trade">
+      <div class="section-copy trade-copy">
         <p class="section-kicker">视角三：贸易责任</p>
-        <h2>减排是真减少，还是责任转移？</h2>
-        <p>
-          一国领土内排放下降，不一定代表消费责任同步下降。点击
-          <span class="narrative-trigger" data-module="trade" data-metric="production">生产端排放</span>、
-          <span class="narrative-trigger" data-module="trade" data-metric="consumption">消费端排放</span>或
-          <span class="narrative-trigger" data-module="trade" data-metric="net">净进口碳</span>，
-          对比不同责任口径。
+        <h2>“环保先锋”是真减排，还是转嫁责任？</h2>
+        <p class="trade-switch-copy">
+          环境数据不应只看本国烟囱冒多少烟，更应看这个国家的消费行为在全球范围内引起了多少排碳。所谓的“绿色先锋”，很大程度上是建立在将污染环节剥离给发展中国家的基础之上的。碳中和不应只是账面上的挪移。先看
+          <button class="trade-text-trigger" type="button" data-metric="production">领土排放</button>
+          ，它只统计本国烟囱；再看
+          <button class="trade-text-trigger" type="button" data-metric="consumption">消费足迹</button>
+          ，把进口商品背后的排放计回消费者；最后看
+          <button class="trade-text-trigger" type="button" data-metric="net">碳责任转移</button>
+          ，判断一个国家是“转嫁者”，还是“代工承担者”。
         </p>
+        <article class="trade-current-view" id="trade-current-view" aria-live="polite"></article>
         <div class="section-insight" id="insight-trade"></div>
       </div>
-      <div class="section-visual">
-        <div class="chart" id="chart-trade" aria-label="生产端与消费端碳排放对比图"></div>
+      <div class="section-visual trade-visual">
+        <div class="trade-view-tabs" aria-label="切换贸易碳责任地图视角">
+          <button class="trade-view-tab" type="button" data-metric="production">领土排放</button>
+          <button class="trade-view-tab" type="button" data-metric="consumption">消费足迹</button>
+          <button class="trade-view-tab" type="button" data-metric="net">碳责任转移</button>
+        </div>
+        <div class="trade-map-wrap">
+          <div class="chart trade-map-card" id="chart-trade" aria-label="2000 到 2023 年贸易碳碳责任转移世界地图"></div>
+          <div class="trade-map-legend" id="trade-map-legend" aria-hidden="true"></div>
+        </div>
+        <div class="trade-lens" id="trade-lens" aria-live="polite"></div>
+        <div class="trade-year-control" aria-label="选择贸易碳责任地图年份">
+          <label for="trade-year">年份 <strong id="trade-year-label">2023</strong></label>
+          <input id="trade-year" type="range" min="2000" max="2023" step="1" value="2023">
+          <div class="trade-year-control__bounds">
+            <span>2000</span>
+            <span>2023</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -146,3 +166,4 @@
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
+

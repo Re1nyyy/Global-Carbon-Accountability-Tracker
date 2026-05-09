@@ -19,4 +19,34 @@
 
 `policy_events.csv` 中的 `global_emissions` 统一换算为 GtCO2，`emissions_before` 和 `emissions_after` 为政策年份前后三年的简单均值，便于图表展示政策节点附近趋势。
 
+## 第三板块：贸易与碳责任
+
+- 领土排放：Our World in Data / Global Carbon Budget, Annual CO2 emissions.
+  - 下载文件：`data/raw/owid_production_co2.csv`
+  - 原始链接：https://ourworldindata.org/grapher/annual-co2-emissions-per-country
+- 消费端排放：Our World in Data / Global Carbon Budget, Annual consumption-based CO2 emissions.
+  - 下载文件：`data/raw/owid_consumption_co2.csv`
+  - 原始链接：https://ourworldindata.org/grapher/consumption-co2-emissions
+- 人口：Our World in Data, Population.
+  - 下载文件：`data/raw/owid_population.csv`
+  - 原始链接：https://ourworldindata.org/grapher/population
+- 世界地图底图：Vega Datasets `world-110m.json`，由 Vega-Lite 在页面中远程读取。
+  - 原始链接：https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json
+
+清洗口径：
+
+- 输出文件：`data/processed/trade_carbon.csv`
+- 时间范围：2000-2023 年。
+- 国家范围：50 个主要国家和经济体，覆盖 G20、主要 OECD 国家、主要制造业国家、资源出口国和新兴经济体。
+- 单位转换：OWID 原始值为吨 CO2，处理后统一转换为 GtCO2。
+- 计算方式：`net_embodied_carbon = consumption_co2 - production_co2`。
+- 人均计算：总量吨 CO2 除以人口，得到 tCO2/person。
+- 责任类型：人均净进口碳绝对值小于 0.2 tCO2/person 记为 `balanced`，正值记为 `net_importer`，负值记为 `net_exporter`。
+
+限制说明：
+
+- 消费端排放数据不是所有国家都有完整覆盖，缺少消费端口径的国家未纳入本模块。
+- 消费端排放不包含土地利用变化，也不把国际航空和航运排放分配到单个国家。
+- 2024 年数据可能仍会修订，本模块固定使用到 2023 年。
+
 请记录每个数据文件的下载日期、链接、许可说明和清洗方法。

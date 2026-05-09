@@ -65,6 +65,178 @@
   min-width: 0;
 }
 
+.trade-story {
+  grid-template-columns: minmax(300px, 0.76fr) minmax(520px, 1.24fr);
+  align-items: start;
+}
+
+.trade-copy {
+  display: grid;
+  gap: 20px;
+}
+
+.trade-switch-copy {
+  margin-bottom: 0;
+}
+
+.trade-text-trigger {
+  border: 0;
+  border-bottom: 2px solid currentColor;
+  padding: 0 1px 2px;
+  background: transparent;
+  color: var(--color-accent);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.trade-text-trigger:hover,
+.trade-text-trigger.is-active {
+  color: #8f241c;
+  background: rgba(196, 59, 47, 0.08);
+}
+
+.trade-current-view {
+  padding: 22px 24px;
+  border: 1px solid rgba(196, 59, 47, 0.2);
+  background: rgba(255, 253, 248, 0.88);
+  box-shadow: 0 14px 34px rgba(48, 39, 25, 0.08);
+}
+
+.trade-current-view__number {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-accent-2);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.trade-current-view h3 {
+  margin-bottom: 10px;
+  font-size: 21px;
+}
+
+.trade-current-view p {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.trade-visual {
+  position: sticky;
+  top: 28px;
+}
+
+.trade-view-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.trade-view-tab {
+  min-height: 42px;
+  border: 1px solid var(--color-line);
+  background: rgba(255, 253, 248, 0.86);
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.trade-view-tab:hover,
+.trade-view-tab.is-active {
+  border-color: rgba(196, 59, 47, 0.45);
+  background: rgba(196, 59, 47, 0.08);
+  color: var(--color-accent);
+}
+
+.trade-lens {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.trade-lens__item {
+  padding: 14px 16px;
+  border: 1px solid var(--color-line);
+  background: rgba(255, 253, 248, 0.9);
+}
+
+.trade-lens__label {
+  margin-bottom: 4px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.trade-lens__value {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.trade-lens__list {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.trade-lens__list li {
+  padding-left: 2px;
+}
+
+.trade-lens__list li::marker {
+  color: var(--color-accent-2);
+  font-weight: 800;
+}
+
+.trade-lens__list span {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.trade-lens__list strong {
+  float: right;
+  margin-left: 10px;
+  color: var(--color-text);
+}
+
+.trade-year-control {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--color-line);
+  background: rgba(255, 253, 248, 0.9);
+  box-shadow: 0 10px 28px rgba(48, 39, 25, 0.07);
+}
+
+.trade-year-control label {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.trade-year-control input {
+  width: 100%;
+  margin: 12px 0 4px;
+  accent-color: var(--color-accent);
+}
+
+.trade-year-control__bounds {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
 .methodology {
   padding: 76px 0 88px;
   border-top: 1px solid var(--color-line);
@@ -102,6 +274,15 @@
 
   .section-copy {
     position: static;
+  }
+
+  .trade-visual {
+    position: static;
+  }
+
+  .trade-view-tabs,
+  .trade-lens {
+    grid-template-columns: 1fr;
   }
 
   .story-section {
