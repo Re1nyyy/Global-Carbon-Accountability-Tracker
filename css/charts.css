@@ -24,6 +24,57 @@
   display: none;
 }
 
+.trade-map-wrap {
+  position: relative;
+}
+
+.trade-map-card {
+  min-height: 390px;
+  padding: 12px 16px 8px;
+  overflow: hidden;
+}
+
+.trade-map-legend {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  width: 260px;
+  z-index: 2;
+}
+
+.trade-map-legend__title {
+  margin-bottom: 8px;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.trade-map-legend__bar {
+  height: 12px;
+  background: var(--trade-legend-gradient);
+}
+
+.trade-map-legend__labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  color: var(--color-text);
+  font-size: 12px;
+}
+
+.trade-map-card .vega-embed,
+.trade-map-card .vega-embed > div {
+  position: relative;
+  max-width: 100%;
+}
+
+.trade-map-card canvas,
+.trade-map-card svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 /* ── View toggle buttons ── */
 .chart-toggles {
   display: flex;
