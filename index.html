@@ -105,7 +105,14 @@
         <div id="text-majors"></div>
       </div>
       <div class="section-visual">
-        <div id="vis-majors" class="chart" style="width: 100%; overflow-x: auto; overflow-y: hidden;" aria-label="头部企业排放排行图"></div>
+        <div class="chart-toggle-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
+          <button class="chart-toggle-btn active" data-view="map">🌍 空间分布</button>
+          <button class="chart-toggle-btn" data-view="bar">📊 排放排名</button>
+        </div>
+        <div id="vis-majors-grid-stage" class="chart-grid-stage">
+          <div id="vis-majors-map" class="chart chart-view active" aria-label="碳排大国分布地图"></div>
+          <div id="vis-majors-bar" class="chart chart-view" aria-label="头部企业排放排行图"></div>
+        </div>
       </div>
     </section>
 
