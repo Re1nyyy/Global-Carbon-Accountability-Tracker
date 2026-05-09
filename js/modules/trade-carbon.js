@@ -16,6 +16,7 @@ const tradeState = {
 let tradeData = [];
 let activeView = null;
 let pendingYearFrame = null;
+let pendingResizeFrame = null;
 
 const metricConfig = {
   production: {
@@ -124,6 +125,7 @@ export async function initTradeCarbonModule() {
   tradeData = await loadCsv("data/processed/trade_carbon.csv");
   bindMetricControls();
   bindYearControl();
+  bindResizeHandler();
   updateTradeNarrative();
   updateTradeLegend();
   renderTradeMap();
@@ -223,6 +225,7 @@ function getYearData() {
 function renderTradeMap() {
   const rows = getYearData();
   const config = metricConfig[tradeState.selectedMetric];
+  const mapLayout = getMapLayout();
 
   const spec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
@@ -235,8 +238,8 @@ function renderTradeMap() {
       subtitleColor: "#62615d"
     },
     width: "container",
-    height: 330,
-    projection: { type: "equalEarth", translate: [330, 190], scale: 112 },
+    height: mapLayout.height,
+    projection: { type: "equalEarth", translate: mapLayout.translate, scale: mapLayout.scale },
     datasets: {
       tradeValues: rows
     },
@@ -423,6 +426,30 @@ function getLensConfig(rows) {
     lowRows: sorted.slice(-5).reverse(),
     format: (row) => formatSignedTonnesPerPerson(row.net_embodied_carbon_per_capita)
   };
+}
+
+function bindResizeHandler() {
+  window.addEventListener("resize", () => {
+    if (pendingResizeFrame) {
+      window.cancelAnimationFrame(pendingResizeFrame);
+    }
+
+    pendingResizeFrame = window.requestAnimationFrame(() => {
+      pendingResizeFrame = null;
+      renderTradeMap();
+    });
+  });
+}
+
+function getMapLayout() {
+  const container = document.querySelector("#chart-trade");
+  const width = Math.max(300, container?.clientWidth ?? 680);
+  const isMobile = width < 560;
+  const height = isMobile ? Math.max(210, Math.min(270, width * 0.66)) : 330;
+  const scale = isMobile ? width * 0.155 : Math.min(112, width * 0.16);
+  const translate = [width / 2, isMobile ? height / 2 + 8 : 190];
+
+  return { height, scale, translate };
 }
 
 function updateTradeInsight(hoveredCountry = null) {
