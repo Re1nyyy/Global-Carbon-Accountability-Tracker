@@ -463,21 +463,18 @@ function updateTradeInsight(hoveredCountry = null) {
 
   if (tradeState.selectedMetric === "production") {
     const top = [...rows].sort((a, b) => b.production_co2_per_capita - a.production_co2_per_capita)[0];
-    setInsight(
-      "#insight-trade",
+    setTradeInsight(
       `${tradeState.selectedYear} 年先看 <strong>领土排放</strong>：这是一种“烟囱在哪里”的算法。样本中人均本土生产排放最高的是 <strong>${top.country_zh}</strong>，约 <strong>${formatTonnesPerPerson(top.production_co2_per_capita)}</strong>。但这还不能说明谁最终消费了这些高碳商品。`
     );
   } else if (tradeState.selectedMetric === "consumption") {
     const topGap = [...rows].sort((a, b) => b.net_embodied_carbon_per_capita - a.net_embodied_carbon_per_capita)[0];
-    setInsight(
-      "#insight-trade",
+    setTradeInsight(
       `${tradeState.selectedYear} 年再看 <strong>消费足迹</strong>：进口商品里的隐含碳被计回消费者。此时 <strong>${topGap.country_zh}</strong> 的人均消费责任比本土生产责任高出 <strong>${formatSignedTonnesPerPerson(topGap.net_embodied_carbon_per_capita)}</strong>，说明“绿色”可能只是被供应链藏了起来。`
     );
   } else {
     const importer = [...rows].sort((a, b) => b.net_embodied_carbon_per_capita - a.net_embodied_carbon_per_capita)[0];
     const exporter = [...rows].sort((a, b) => a.net_embodied_carbon_per_capita - b.net_embodied_carbon_per_capita)[0];
-    setInsight(
-      "#insight-trade",
+    setTradeInsight(
       `${tradeState.selectedYear} 年最后看 <strong>碳责任转移</strong>：正值是转嫁者，负值是代工承担者。<strong>${importer.country_zh}</strong> 是主要人均隐含碳净进口方（${formatSignedTonnesPerPerson(importer.net_embodied_carbon_per_capita)}），<strong>${exporter.country_zh}</strong> 则承担了更多服务他国消费的生产排放（${formatSignedTonnesPerPerson(exporter.net_embodied_carbon_per_capita)}）。碳中和不应只是账面上的挪移。`
     );
   }
@@ -489,8 +486,7 @@ function updateHoveredCountryInsight(rows, country) {
   if (tradeState.selectedMetric === "production") {
     const totalRank = getRank(rows, country.iso3, "production_co2");
     const perCapitaRank = getRank(rows, country.iso3, "production_co2_per_capita");
-    setInsight(
-      "#insight-trade",
+    setTradeInsight(
       `<strong>${countryName}</strong> 在 ${country.year} 年的领土排放总量为 <strong>${formatGt(country.production_co2)}</strong>，在当前样本国家中排名 <strong>第 ${totalRank} 位</strong>；人均领土排放为 <strong>${formatTonnesPerPerson(country.production_co2_per_capita)}</strong>，排名 <strong>第 ${perCapitaRank} 位</strong>。`
     );
     return;
@@ -499,17 +495,19 @@ function updateHoveredCountryInsight(rows, country) {
   if (tradeState.selectedMetric === "consumption") {
     const totalRank = getRank(rows, country.iso3, "consumption_co2");
     const perCapitaRank = getRank(rows, country.iso3, "consumption_co2_per_capita");
-    setInsight(
-      "#insight-trade",
+    setTradeInsight(
       `<strong>${countryName}</strong> 在 ${country.year} 年的消费足迹总量为 <strong>${formatGt(country.consumption_co2)}</strong>，在当前样本国家中排名 <strong>第 ${totalRank} 位</strong>；人均消费足迹为 <strong>${formatTonnesPerPerson(country.consumption_co2_per_capita)}</strong>，排名 <strong>第 ${perCapitaRank} 位</strong>。`
     );
     return;
   }
 
-  setInsight(
-    "#insight-trade",
+  setTradeInsight(
     `<strong>${countryName}</strong> 在 ${country.year} 年的人均领土排放为 <strong>${formatTonnesPerPerson(country.production_co2_per_capita)}</strong>，人均消费排放为 <strong>${formatTonnesPerPerson(country.consumption_co2_per_capita)}</strong>，人均净进口碳为 <strong>${formatSignedTonnesPerPerson(country.net_embodied_carbon_per_capita)}</strong>。总量净进口碳为 <strong>${formatSignedGt(country.net_embodied_carbon)}</strong>。${getResponsibilitySentence(country)}`
   );
+}
+
+function setTradeInsight(html) {
+  setInsight("#insight-trade", `<div class="trade-insight__inner">${html}</div>`);
 }
 
 function getRank(rows, iso3, field) {
