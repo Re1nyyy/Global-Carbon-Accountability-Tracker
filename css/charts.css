@@ -75,6 +75,37 @@
   height: auto;
 }
 
+@media (max-width: 640px) {
+  .trade-map-wrap {
+    display: grid;
+    gap: 10px;
+  }
+
+  .trade-map-card {
+    min-height: 260px;
+    padding: 10px 10px 6px;
+  }
+
+  .trade-map-legend {
+    position: static;
+    width: 100%;
+    max-width: none;
+    order: -1;
+    padding: 10px 12px;
+    border: 1px solid var(--color-line);
+    background: rgba(255, 253, 248, 0.88);
+  }
+
+  .trade-map-legend__title {
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .trade-map-legend__bar {
+    height: 10px;
+  }
+}
+
 /* ── View toggle buttons ── */
 .chart-toggles {
   display: flex;
