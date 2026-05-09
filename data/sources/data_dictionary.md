@@ -5,6 +5,7 @@
 - `country`: 英文国家名。
 - `iso3`: ISO 3166-1 alpha-3 国家代码。
 - `iso_num`: ISO 3166-1 numeric 国家代码，用于与 Vega Datasets 的世界地图底图匹配。
+- `region`: 国家所属洲，用于图表颜色编码。
 - `year`: 年份。
 
 ## gdp_emissions.csv
