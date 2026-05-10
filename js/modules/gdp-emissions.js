@@ -6,6 +6,7 @@ import { setActiveTrigger, setInsight } from "../utils/dom.js";
 const gdpState = {
   selectedCountry: DEFAULTS.gdpCountry,
   selectedYear: 2022,
+  selectedDevelopmentType: "",
   isPlaying: false,
   playTimer: null,
   animationFrame: null,
@@ -13,6 +14,10 @@ const gdpState = {
 };
 
 const GDP_POINT_DATA = "gdpPoints";
+const GDP_DATA_PATH = "data/processed/gdp_emissions.csv?v=20260510-status-rename";
+const GDP_GROWTH_DOMAIN = [-40, 140];
+const CO2_GROWTH_DOMAIN = [-50, 140];
+const HIDDEN_GDP_CHART_COUNTRIES = new Set(["Mongolia", "Qatar"]);
 const PLAY_YEAR_DURATION = 720;
 const PLAY_YEAR_PAUSE = 90;
 
@@ -24,7 +29,7 @@ let gdpRenderQueued = false;
 let gdpPendingRows = null;
 
 export async function initGdpEmissionsModule() {
-  gdpData = await loadCsv("data/processed/gdp_emissions.csv");
+  gdpData = await loadCsv(GDP_DATA_PATH);
   gdpYears = [...new Set(gdpData.map((row) => row.year))].sort((a, b) => a - b);
   const yearSlider = document.querySelector("#gdp-year-slider");
   const initialYear = yearSlider?.value ? Number(yearSlider.value) : gdpState.selectedYear;
@@ -32,6 +37,7 @@ export async function initGdpEmissionsModule() {
   bindGdpTextTriggers();
   bindGdpControls();
   bindDecouplingDialog();
+  bindGdpDevelopmentFilter();
   bindGdpScrollSteps();
   updateGdpControls();
   await renderGdpChart();
@@ -41,11 +47,20 @@ export async function initGdpEmissionsModule() {
 function bindGdpTextTriggers() {
   document.querySelectorAll('.narrative-trigger[data-module="gdp"]').forEach((trigger) => {
     trigger.addEventListener("click", () => {
-      gdpState.selectedCountry = trigger.dataset.country;
+      if (trigger.dataset.country) {
+        gdpState.selectedCountry = trigger.dataset.country;
+      }
+
       if (trigger.dataset.year) {
         gdpState.selectedYear = Number(trigger.dataset.year);
         stopGdpPlayback();
       }
+
+      if (trigger.dataset.developmentType !== undefined) {
+        gdpState.selectedDevelopmentType = trigger.dataset.developmentType;
+        stopGdpPlayback({ syncChart: false });
+      }
+
       renderGdpChart();
       updateGdpControls();
       updateGdpInsight();
@@ -82,6 +97,22 @@ function bindGdpControls() {
       setGdpYear(Number(yearSlider.value));
     });
   }
+}
+
+function bindGdpDevelopmentFilter() {
+  const filter = document.querySelector("#gdp-development-filter");
+  if (!filter) {
+    return;
+  }
+
+  filter.value = gdpState.selectedDevelopmentType;
+  filter.addEventListener("change", () => {
+    stopGdpPlayback({ syncChart: false });
+    gdpState.selectedDevelopmentType = filter.value;
+    updateGdpChartData(getYearRows(gdpState.selectedYear));
+    updateGdpControls();
+    updateGdpInsight();
+  });
 }
 
 function bindDecouplingDialog() {
@@ -293,7 +324,7 @@ function updateGdpControls() {
   }
 
   if (yearLabel) {
-    yearLabel.textContent = `窗口期：${gdpState.selectedYear - 5}-${gdpState.selectedYear}`;
+    yearLabel.textContent = getGdpYearLabel(gdpState.selectedYear);
   }
 
   if (playButton) {
@@ -303,6 +334,11 @@ function updateGdpControls() {
         ? "重播"
         : "播放";
     playButton.disabled = false;
+  }
+
+  const developmentFilter = document.querySelector("#gdp-development-filter");
+  if (developmentFilter) {
+    developmentFilter.value = gdpState.selectedDevelopmentType;
   }
 }
 
@@ -315,8 +351,12 @@ function updateGdpControlsForYear(year) {
   }
 
   if (yearLabel) {
-    yearLabel.textContent = `窗口期：${year - 5}-${year}`;
+    yearLabel.textContent = getGdpYearLabel(year);
   }
+}
+
+function getGdpYearLabel(year) {
+  return `窗口期：${year - 5}-${year} · ${getYearRows(year).length} 个国家`;
 }
 
 function getMinGdpYear() {
@@ -367,31 +407,31 @@ async function renderGdpChartNow() {
     width: "container",
     height: Number(chartElement.dataset.chartHeight) || 430,
     autosize: { type: "fit", contains: "padding", resize: true },
-    padding: { left: 6, top: 8, right: 92, bottom: 6 },
+    padding: { left: 6, top: 8, right: 36, bottom: 6 },
     data: { name: GDP_POINT_DATA, values: yearData },
     layer: [
       {
-        data: { values: [{ x: -40, y: 0 }, { x: 90, y: 0 }] },
+        data: { values: [{ x: GDP_GROWTH_DOMAIN[0], y: 0 }, { x: GDP_GROWTH_DOMAIN[1], y: 0 }] },
         mark: { type: "line", color: "#9b9589", strokeDash: [4, 4], strokeWidth: 1 },
         encoding: {
-          x: { field: "x", type: "quantitative", scale: { domain: [-40, 90] } },
-          y: { field: "y", type: "quantitative", scale: { domain: [-50, 90] } }
+          x: { field: "x", type: "quantitative", scale: { domain: GDP_GROWTH_DOMAIN } },
+          y: { field: "y", type: "quantitative", scale: { domain: CO2_GROWTH_DOMAIN } }
         }
       },
       {
-        data: { values: [{ x: 0, y: -50 }, { x: 0, y: 90 }] },
+        data: { values: [{ x: 0, y: CO2_GROWTH_DOMAIN[0] }, { x: 0, y: CO2_GROWTH_DOMAIN[1] }] },
         mark: { type: "line", color: "#9b9589", strokeDash: [4, 4], strokeWidth: 1 },
         encoding: {
-          x: { field: "x", type: "quantitative", scale: { domain: [-40, 90] } },
-          y: { field: "y", type: "quantitative", scale: { domain: [-50, 90] } }
+          x: { field: "x", type: "quantitative", scale: { domain: GDP_GROWTH_DOMAIN } },
+          y: { field: "y", type: "quantitative", scale: { domain: CO2_GROWTH_DOMAIN } }
         }
       },
       {
-        data: { values: [{ x: -40, y: -40 }, { x: 90, y: 90 }] },
+        data: { values: [{ x: GDP_GROWTH_DOMAIN[0], y: GDP_GROWTH_DOMAIN[0] }, { x: CO2_GROWTH_DOMAIN[1], y: CO2_GROWTH_DOMAIN[1] }] },
         mark: { type: "line", color: "#d3c9b8", strokeDash: [6, 6], strokeWidth: 1 },
         encoding: {
-          x: { field: "x", type: "quantitative", scale: { domain: [-40, 90] } },
-          y: { field: "y", type: "quantitative", scale: { domain: [-50, 90] } }
+          x: { field: "x", type: "quantitative", scale: { domain: GDP_GROWTH_DOMAIN } },
+          y: { field: "y", type: "quantitative", scale: { domain: CO2_GROWTH_DOMAIN } }
         }
       },
       {
@@ -402,14 +442,14 @@ async function renderGdpChartNow() {
             field: "gdp_growth_5y",
             type: "quantitative",
             title: "过去 5 年 GDP 增长率（%）",
-            scale: { domain: [-40, 90] },
+            scale: { domain: GDP_GROWTH_DOMAIN },
             axis: { grid: true, tickCount: 8 }
           },
           y: {
             field: "co2_growth_5y",
             type: "quantitative",
             title: "过去 5 年 CO2 排放增长率（%）",
-            scale: { domain: [-50, 90] },
+            scale: { domain: CO2_GROWTH_DOMAIN },
             axis: { grid: true, tickCount: 8 }
           },
           size: {
@@ -420,7 +460,7 @@ async function renderGdpChartNow() {
             legend: {
               title: "人口",
               labelLimit: 120,
-              offset: 14,
+              offset: 30,
               values: [10, 100, 1000],
               labelExpr: "datum.value == 10 ? '一千万' : datum.value == 100 ? '一亿' : datum.value == 1000 ? '十亿' : datum.label",
               symbolFillColor: COLORS.selected,
@@ -478,8 +518,8 @@ async function renderGdpChartNow() {
         mark: labelMark,
         encoding: {
           key: { field: "country" },
-          x: { field: "gdp_growth_5y", type: "quantitative", scale: { domain: [-40, 90] } },
-          y: { field: "co2_growth_5y", type: "quantitative", scale: { domain: [-50, 90] } },
+          x: { field: "gdp_growth_5y", type: "quantitative", scale: { domain: GDP_GROWTH_DOMAIN } },
+          y: { field: "co2_growth_5y", type: "quantitative", scale: { domain: CO2_GROWTH_DOMAIN } },
           text: { field: "country" }
         }
       }
@@ -492,7 +532,7 @@ async function renderGdpChartNow() {
         titleFontSize: 15,
         titleFontWeight: "bold",
         symbolSize: 120,
-        labelLimit: 96
+        labelLimit: 120
       }
     }
   };
@@ -521,7 +561,14 @@ async function renderGdpChartNow() {
 }
 
 function getYearRows(year) {
-  return gdpData.filter((row) => row.year === year);
+  return gdpData.filter((row) => {
+    if (row.year !== year || HIDDEN_GDP_CHART_COUNTRIES.has(row.country)) {
+      return false;
+    }
+
+    return !gdpState.selectedDevelopmentType
+      || String(row.development_type ?? "").split("；").includes(gdpState.selectedDevelopmentType);
+  });
 }
 
 function updateGdpChartData(rows) {
@@ -616,8 +663,11 @@ function setGdpChartPlayingClass(isPlaying) {
 }
 
 function isGdpTriggerActive(trigger) {
-  const countryMatches = trigger.dataset.country === gdpState.selectedCountry;
-  if (!countryMatches) {
+  if (trigger.dataset.developmentType !== undefined) {
+    return trigger.dataset.developmentType === gdpState.selectedDevelopmentType;
+  }
+
+  if (trigger.dataset.country !== gdpState.selectedCountry) {
     return false;
   }
 
@@ -631,8 +681,13 @@ function updateGdpInsight() {
     return;
   }
 
+  const hiddenByFilter = !getYearRows(gdpState.selectedYear).some((item) => item.country === row.country);
+  const filterNote = hiddenByFilter
+    ? ` 当前筛选条件下，<strong>${row.country}</strong> 不在图中显示。`
+    : "";
+
   setInsight(
     "#insight-gdp",
-    `图中 <strong>${row.year}</strong> 年的 <strong>${row.country}</strong> 气泡代表 <strong>${row.year - 5}-${row.year}</strong> 年的变化。这 5 年内，GDP 增长约 <strong>${formatPercent(row.gdp_growth_5y)}</strong>，CO2 排放变化约 <strong>${formatPercent(row.co2_growth_5y)}</strong>，判定为 <strong>${row.decoupling_status}</strong>。当前总排放约为 <strong>${formatGt(row.total_co2)}</strong>，GDP PPP 约为 <strong>${formatNumber(row.gdp_ppp, 0)}</strong> 十亿美元，碳强度变化约 <strong>${formatPercent(row.intensity_change_5y)}</strong>。`
+    `图中 <strong>${row.year}</strong> 年的 <strong>${row.country}</strong> 气泡代表 <strong>${row.year - 5}-${row.year}</strong> 年的变化。这 5 年内，GDP 增长约 <strong>${formatPercent(row.gdp_growth_5y)}</strong>，CO2 排放变化约 <strong>${formatPercent(row.co2_growth_5y)}</strong>，判定为 <strong>${row.decoupling_status}</strong>。当前总排放约为 <strong>${formatGt(row.total_co2)}</strong>，GDP PPP 约为 <strong>${formatNumber(row.gdp_ppp, 0)}</strong> 十亿美元，碳强度变化约 <strong>${formatPercent(row.intensity_change_5y)}</strong>。${filterNote}`
   );
 }

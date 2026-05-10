@@ -371,20 +371,20 @@ function buildTrendSentence(event) {
   const absDelta = Math.abs(delta);
 
   if (absDelta < 0.3) {
-    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 变化到 <strong>${formatGt(after)}</strong>，整体接近持平，说明这一节点附近还没有出现清晰的全球排放拐点。`;
+    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 变化到 <strong>${formatGt(after)}</strong>，整体接近持平。`;
   }
 
   if (delta >= 1) {
-    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 上升到 <strong>${formatGt(after)}</strong>，增幅约 <strong>${formatGt(delta)}</strong>。这表明该政策更像是治理进程的推进信号，而不是立刻压低全球排放的转折点。`;
+    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 上升到 <strong>${formatGt(after)}</strong>，增幅约 <strong>${formatGt(delta)}</strong>。`;
   }
 
   if (delta > 0) {
-    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 小幅上升到 <strong>${formatGt(after)}</strong>。这一变化提示我们，政策达成和排放下降之间往往存在明显滞后。`;
+    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 小幅上升到 <strong>${formatGt(after)}</strong>。`;
   }
 
   if (delta <= -1) {
-    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 下降到 <strong>${formatGt(after)}</strong>，降幅约 <strong>${formatGt(Math.abs(delta))}</strong>。这个节点附近出现了较明显回落，但仍需要结合经济周期、能源结构和疫情等因素判断是否由政策直接驱动。`;
+    return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 下降到 <strong>${formatGt(after)}</strong>，降幅约 <strong>${formatGt(Math.abs(delta))}</strong>。`;
   }
 
-  return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 小幅下降到 <strong>${formatGt(after)}</strong>。这可能意味着政策压力开始显现，但下降幅度仍不足以单独证明出现稳定拐点。`;
+  return `从前后三年均值看，排放由 <strong>${formatGt(before)}</strong> 小幅下降到 <strong>${formatGt(after)}</strong>。`;
 }

@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>碳责任的四个视角</title>
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/layout.css?v=20260510-trade-status-table">
   <link rel="stylesheet" href="css/narrative.css">
-  <link rel="stylesheet" href="css/charts.css">
+  <link rel="stylesheet" href="css/charts.css?v=20260510-margin-padding">
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -19,7 +22,7 @@
       <p class="eyebrow">Interactive Climate Responsibility Document</p>
       <h1>碳责任的四个视角</h1>
       <p class="hero__dek">
-        经济增长、国际政策、贸易转移与企业排放分别揭示了碳责任的不同侧面。本页面采用四个互不依赖的交互模块，帮助读者从多个角度探索同一个问题。
+        国际政策、经济增长、贸易转移与企业排放分别揭示了碳责任的不同侧面。本页面采用四个互不依赖的交互模块，帮助读者从多个角度探索同一个问题。
       </p>
     </div>
   </header>
@@ -29,26 +32,56 @@
       <div>
         <h2>如何阅读</h2>
         <p>
-          每个板块都是独立模块。点击正文中带下划线的关键词，只会改变本板块图表和说明文字，不会影响其他板块。
+          点击正文中带下划线的关键词，只会改变本板块图表和说明文字，不会影响其他板块。
         </p>
+      </div>
+    </section>
+
+    <section class="story-section story-section--policy" id="section-policy">
+      <div class="section-copy">
+        <p class="section-kicker">视角一：政策干预</p>
+        <h2>国际政策效果如何？</h2>
+        <p>
+          这一板块把全球 CO₂ 排放曲线和重大国际气候政策放在同一条时间线上，观察政策出现后，排放趋势是否真的发生变化。
+        </p>
+        <p>
+          拖动右侧年份轴，或点击下面的政策节点，查看该事件前后三年全球排放均值的变化。
+        </p>
+        <ul class="policy-event-list">
+          <li><span class="narrative-trigger" data-module="policy" data-event="unfccc-1992">1992《联合国气候变化框架公约》</span></li>
+          <li><span class="narrative-trigger" data-module="policy" data-event="kyoto-1997">1997《京都议定书》</span></li>
+          <li><span class="narrative-trigger" data-module="policy" data-event="copenhagen-2009">2009 哥本哈根协议</span></li>
+          <li><span class="narrative-trigger" data-module="policy" data-event="paris-2015">2015《巴黎协定》</span></li>
+          <li><span class="narrative-trigger" data-module="policy" data-event="global-stocktake-2023">2023 首次全球盘点</span> 等</li>
+        </ul>
+        <div class="section-insight" id="insight-policy"></div>
+        <div class="section-insight">
+          如果政策没有明显压住总排放，是不是因为经济发展天然需要更多碳排放？
+        </div>
+      </div>
+      <div class="section-visual">
+        <div class="chart" id="chart-policy" aria-label="国际政策与排放变化图"></div>
       </div>
     </section>
 
     <section class="story-section gdp-page-section" id="section-gdp">
       <div class="section-copy">
-        <p class="section-kicker">视角一：宏观经济</p>
+        <p class="section-kicker">视角二：宏观经济</p>
         <h2>经济增长必须牺牲环境吗？</h2>
+        <p>
+          经济增长通常意味着更多生产、运输、建筑、消费和电力需求；如果能源结构依赖化石能源，那么经济增长通常会带来排放上升。
+        </p>
         <div class="section-insight" id="insight-gdp"></div>
         <div class="narrative-summary">
-          <h3>19 个主要经济体的阶段性变化</h3>
+          <h3>33 个主要经济体的阶段性变化</h3>
           <p>
             本模块以 2008 年全球金融危机作为分界，将样本分为 1995-2008 年和 2009-2022 年两个阶段。
           </p>
           <p>
-            截至 2008 年，19 个国家中有 <strong>7 个</strong>可归为完全脱钩，<strong>8 个</strong>为强脱钩，<strong>4 个</strong>为相对脱钩。这个阶段的典型特征是欧洲和北美部分国家已经出现排放下降，而部分新兴经济体虽然排放仍在增长，但 GDP 增速已明显高于排放增速。
+            截至 2008 年，33 个国家中有 <strong>8 个</strong>可归为完全脱钩，<strong>17 个</strong>为基本脱钩，<strong>8 个</strong>为未脱钩。这个阶段的典型特征是欧洲、北美和日本等成熟经济体已经出现排放下降；但资源型、煤电依赖型和出口制造型经济体则分化明显：俄罗斯、哈萨克斯坦、波兰、马来西亚等 GDP 增速已明显高于排放增速，而孟加拉国、中国、印度、巴基斯坦、泰国、土耳其和越南仍处于未脱钩阶段，排放随工业化和制造业扩张继续上升。
           </p>
           <p>
-            截至 2022 年，完全脱钩国家为 <strong>11 个</strong>，强脱钩国家为 <strong>4 个</strong>，相对脱钩国家为 <strong>1 个</strong>，未脱钩国家为 <strong>1 个</strong>，另有 <strong>2 个</strong>属于经济收缩型减排。2008 年后，澳大利亚、巴西、墨西哥、南非和韩国转向完全脱钩或强脱钩；中国在 2013 年后也进入强脱钩区间，说明排放增速开始显著低于经济增速。
+            截至 2022 年，完全脱钩国家为 <strong>16 个</strong>，基本脱钩国家为 <strong>5 个</strong>，未脱钩国家为 <strong>6 个</strong>，依赖国家为 <strong>4 个</strong>，另有 <strong>2 个</strong>属于经济收缩型减排。2008 年后，巴基斯坦和泰国从未脱钩转向完全脱钩，孟加拉国、中国和土耳其转向基本脱钩；澳大利亚、巴西、埃及、哈萨克斯坦、墨西哥、波兰、南非和韩国则从基本脱钩进一步转为完全脱钩，说明减排进展不再只集中于欧美成熟经济体。
           </p>
         </div>
         <div class="narrative-summary">
@@ -64,67 +97,62 @@
             2006-2010 年，中国低碳治理开始从倡议转向量化约束。<span class="narrative-trigger" data-module="gdp" data-country="China" data-year="2011"><strong>2006 年</strong></span>“十一五”规划纲要首次在国家五年规划中设定具体节能目标，节能减排首次被列为国家经济社会发展的约束性指标；<span class="narrative-trigger" data-module="gdp" data-country="China" data-year="2012"><strong>2007 年</strong></span>发布首部应对气候变化的综合性政策文件《中国应对气候变化国家方案》，系统部署国家应对气候变化行动；<span class="narrative-trigger" data-module="gdp" data-country="China" data-year="2014"><strong>2009 年</strong></span>哥本哈根气候大会前，中国首次提出量化减排承诺：到 2020 年单位 GDP 二氧化碳排放比 2005 年下降 40%-45%，并作为约束性指标纳入国民经济和社会发展中长期规划。
           </p>
           <p>
-            从 2011-2016 的数据来看，政策约束的效果逐渐明显：2006-2011 和 2007-2012 窗口仍为相对脱钩；到 2008-2013 窗口，GDP 增长约 <strong>47.5%</strong>，CO2 增长约 <strong>32.7%</strong>，判定为 <strong>强脱钩</strong>；2014 年五年窗口内中国 CO2 增长降至 <strong>26.6%</strong>，2015 年和 2016 年进一步降至 <strong>14.5%</strong> 和 <strong>2.4%</strong>，均保持强脱钩。中国的低碳工作效果在 2013 年之后更加明显：经济仍保持较高增长，但排放增速被大幅压低。
+            从 2011-2016 的数据来看，政策约束的效果逐渐明显：2006-2011 和 2007-2012 窗口仍为未脱钩；到 2008-2013 窗口，GDP 增长约 <strong>47.5%</strong>，CO2 增长约 <strong>32.7%</strong>，判定为 <strong>基本脱钩</strong>；2014 年五年窗口内中国 CO2 增长降至 <strong>26.6%</strong>，2015 年和 2016 年进一步降至 <strong>14.5%</strong> 和 <strong>2.4%</strong>，均保持基本脱钩。中国的低碳工作效果在 2013 年之后更加明显：经济仍保持较高增长，但排放增速被大幅压低。
           </p>
           <p>
             <strong>2020 年</strong>，中国在联合国大会上正式宣布，力争于 2030 年前实现碳达峰，努力争取 2060 年前实现碳中和。这使前一阶段以节能强度、碳强度为主的约束进一步上升为长期排放峰值与净零目标。
           </p>
         </div>
-        <div class="narrative-summary gdp-scroll-step" data-gdp-scroll-year="2019" data-gdp-scroll-country="United States">
-          <h3>巴黎协定与疫情冲击</h3>
+        <div class="narrative-summary gdp-scroll-step" data-gdp-scroll-year="2022" data-gdp-scroll-country="China">
+          <h3>碳排放与经济增长模式</h3>
           <p>
-            <span class="narrative-trigger" data-module="gdp" data-country="United States" data-year="2016"><strong>2016 年</strong></span>，《巴黎协定》签署，标志着全球应对气候变化进入一个新的阶段。
-            2016 年，完全脱钩国家有 <strong>9 个</strong>，强脱钩国家有 <strong>5 个</strong>，相对脱钩国家有 <strong>2 个</strong>，经济收缩型减排国家有 <strong>1 个</strong>，另有 <strong>2 个</strong>属于其他状态；到疫情前的 2019 年，完全脱钩国家为 <strong>8 个</strong>，强脱钩国家为 <strong>6 个</strong>，相对脱钩国家仍为 <strong>2 个</strong>，经济收缩型减排增加到 <strong>2 个</strong>，另有 <strong>1 个</strong>未脱钩。由此看，巴黎协定并没有在 2016-2019 年立即改变所有国家的增长与排放关系；
+            从 <span class="narrative-trigger" data-module="gdp" data-country="China" data-year="2022"><strong>2022 年</strong></span>除完全脱钩和经济收缩型减排之外的 <strong>15 个</strong>国家看，增长模式与排放依赖高度相关。5 个基本脱钩国家中，<strong>3 个</strong>带有<span class="narrative-trigger" data-module="gdp" data-development-type="工业化早中期">工业化早中期</span>标签，<strong>3 个</strong>带有<span class="narrative-trigger" data-module="gdp" data-development-type="出口制造型增长">出口制造型增长</span>标签，<strong>4 个</strong>带有<span class="narrative-trigger" data-module="gdp" data-development-type="交通、航空、物流快速扩张">交通、航空、物流快速扩张</span>标签，说明这些国家仍在增长，但排放增速已被明显压低。
           </p>
           <p>
-            <span class="narrative-trigger" data-module="gdp" data-country="United States" data-year="2020"><strong>2020 年</strong></span>疫情冲击曾让不少国家出现经济收缩型减排，但到<span class="narrative-trigger" data-module="gdp" data-country="United States" data-year="2022"><strong>2022 年</strong></span>，完全脱钩国家达到 <strong>11 个</strong>，强脱钩国家为 <strong>4 个</strong>，相对脱钩国家为 <strong>1 个</strong>，未脱钩国家为 <strong>1 个</strong>，另有 <strong>2 个</strong>属于经济收缩型减排。与 2019 年相比，澳大利亚、巴西、加拿大和韩国加入完全脱钩行列，日本则退出完全脱钩行列。虽然疫情造成了短期排放下降和经济收缩，但疫情后仍有多数国家保持完全脱钩或强脱钩，且完全脱钩国家数量增加，这说明一部分减排进展已经渡过了临时冲击转向更稳定的结构性变化。
+            6 个未脱钩国家中，有 <strong>4 个</strong>属于<span class="narrative-trigger" data-module="gdp" data-development-type="资源出口型经济">资源出口型经济</span>，<strong>3 个</strong><span class="narrative-trigger" data-module="gdp" data-development-type="能源结构以煤炭为主">能源结构以煤炭为主</span>，<strong>2 个</strong>处于工业化早中期，<strong>5 个</strong>带有交通、航空、物流快速扩张标签。4 个依赖国家中，有 <strong>3 个</strong>属于资源出口型经济，<strong>2 个</strong>能源结构以煤炭为主，<strong>2 个</strong>处于工业化早中期，<strong>3 个</strong>带有交通、航空、物流快速扩张标签。
           </p>
+          <p>
+            因此，最容易形成碳排放依赖的增长模式，一是资源出口型经济，二是以煤炭为主的能源结构。前者把增长绑定在油气、煤炭、矿产开采和高耗能加工上，后者则让新增工业、电力和制造业需求直接转化为排放增长；交通、航空和物流快速扩张会进一步放大这种依赖。
+          </p>
+        </div>
+        <div class="section-insight">
+          这些资源出口型、制造型国家更难脱钩，碳责任是否就主要属于这些国家？
         </div>
       </div>
       <div class="section-visual">
-        <h3 class="chart-title">各国 GDP-CO2 五年增长率关系图</h3>
+        <div class="chart-heading">
+          <h3 class="chart-title">各国 GDP-CO2 五年增长率关系图</h3>
+          <label class="chart-filter" for="gdp-development-filter">
+            <span>发展类型</span>
+            <select id="gdp-development-filter" aria-label="按发展类型筛选国家">
+              <option value="">全部国家</option>
+              <option value="工业化早中期">工业化早中期</option>
+              <option value="能源结构以煤炭为主">能源结构以煤炭为主</option>
+              <option value="出口制造型增长">出口制造型增长</option>
+              <option value="交通、航空、物流快速扩张">交通、航空、物流快速扩张</option>
+              <option value="资源出口型经济">资源出口型经济</option>
+            </select>
+          </label>
+        </div>
         <div class="chart" id="chart-gdp" data-chart-height="350" aria-label="各国 GDP 与 CO2 五年增长率关系气泡图"></div>
         <div class="chart-explainer">
           <div class="chart-explainer__header">
             <p>每个气泡表示一个国家在当前年份向前回看五年的经济增长率与碳排放增长率。拖动时间条或点击播放，观察不同国家在各阶段是否进入脱钩区域。</p>
-            <button class="decoupling-help-button" id="decoupling-help-button" type="button">脱钩说明</button>
+            <button class="decoupling-help-button" id="decoupling-help-button" type="button">数据说明</button>
           </div>
           <p>
             点击
-            <span class="narrative-trigger" data-module="gdp" data-country="China">中国</span>或
-            <span class="narrative-trigger" data-module="gdp" data-country="United States">美国</span>
+            <span class="narrative-trigger" data-module="gdp" data-country="China">中国</span>、
+            <span class="narrative-trigger" data-module="gdp" data-country="United States">美国</span>或
+            <span class="narrative-trigger" data-module="gdp" data-country="Germany">德国</span>
             的气泡或正文关键词，可以查看对应国家在当前窗口期内的解释。
           </p>
         </div>
         <div class="chart-controls" aria-label="GDP 与 CO2 气泡图时间控制">
           <button id="gdp-play-button" type="button">播放</button>
           <input id="gdp-year-slider" type="range" min="1995" max="2022" step="1" value="1995" aria-label="选择当前年份">
-          <span id="gdp-year-label">窗口期：1990-1995</span>
+          <span id="gdp-year-label">窗口期：1990-1995 · 31 个国家</span>
         </div>
-      </div>
-    </section>
-
-    <section class="story-section story-section--policy" id="section-policy">
-      <div class="section-copy">
-        <p class="section-kicker">视角二：政策干预</p>
-        <h2>政策能否压低排放？</h2>
-        <p>
-          这一板块把全球 CO₂ 排放曲线和重大国际气候政策放在同一条时间线上，观察政策出现后，排放趋势是否真的发生变化。
-        </p>
-        <p>
-          拖动右侧年份轴，或点击下面的政策节点，查看该事件前后三年全球排放均值的变化。
-        </p>
-        <ul class="policy-event-list">
-          <li><span class="narrative-trigger" data-module="policy" data-event="unfccc-1992">1992《联合国气候变化框架公约》</span></li>
-          <li><span class="narrative-trigger" data-module="policy" data-event="kyoto-1997">1997《京都议定书》</span></li>
-          <li><span class="narrative-trigger" data-module="policy" data-event="copenhagen-2009">2009 哥本哈根协议</span></li>
-          <li><span class="narrative-trigger" data-module="policy" data-event="paris-2015">2015《巴黎协定》</span></li>
-          <li><span class="narrative-trigger" data-module="policy" data-event="global-stocktake-2023">2023 首次全球盘点</span> 等</li>
-        </ul>
-        <div class="section-insight" id="insight-policy"></div>
-      </div>
-      <div class="section-visual">
-        <div class="chart" id="chart-policy" aria-label="国际政策与排放变化图"></div>
       </div>
     </section>
 
@@ -143,6 +171,63 @@
         </p>
         <article class="trade-current-view" id="trade-current-view" aria-live="polite"></article>
         <div class="section-insight" id="insight-trade"></div>
+        <article class="trade-status-summary" aria-labelledby="trade-status-summary-title">
+          <h3 id="trade-status-summary-title">2022 年脱钩状态与贸易角色</h3>
+          <p>
+            从2022年数据来看，上个模块提到的16个完全脱钩的国家中，有半数都是转嫁者，而在未脱钩和依赖的8个国家中（两个国家没有贸易相关数据），有3个是代工承担者，还有3个是基本平衡，只有两个是转嫁者。
+          </p>
+          <div class="trade-status-table-wrap">
+            <table class="trade-status-table">
+              <thead>
+                <tr>
+                  <th scope="col">脱钩状态</th>
+                  <th scope="col">国家数</th>
+                  <th scope="col">转嫁者</th>
+                  <th scope="col">承担者</th>
+                  <th scope="col">基本平衡</th>
+                  <th scope="col">数据缺失</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">完全脱钩</th>
+                  <td>16</td>
+                  <td><strong>8</strong></td>
+                  <td>5</td>
+                  <td>3</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">基本脱钩</th>
+                  <td>5</td>
+                  <td>1</td>
+                  <td><strong>3</strong></td>
+                  <td>1</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">未脱钩</th>
+                  <td>6</td>
+                  <td>2</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>2</td>
+                </tr>
+                <tr>
+                  <th scope="row">依赖</th>
+                  <td>4</td>
+                  <td>0</td>
+                  <td><strong>2</strong></td>
+                  <td>2</td>
+                  <td>0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="trade-status-summary__note">
+            碳中和不应只是账面上的挪移。公平的碳责任核算，不应只看一个国家境内排了多少碳，也要看它的消费方式在全球范围内引发了多少排放。对于那些承担大量出口生产的国家，它们并不只是“高排放者”，也可能是在为全球消费体系承担被外包的碳成本。
+          </p>
+        </article>
       </div>
       <div class="section-visual trade-visual">
         <div class="trade-view-tabs" aria-label="切换贸易碳责任地图视角">
@@ -171,7 +256,10 @@
         <p class="section-kicker">视角四：企业主体</p>
         <h2>排放责任是否集中在少数企业？</h2>
         <p>
-          国家之外，能源企业也是理解碳责任的重要入口。
+          国家和贸易账户仍然是宏观尺度。真正决定能源开采、化石燃料供给、工业生产和供应链组织方式的，并不只是国家，还有跨国企业和大型排放主体。
+        </p>
+        <p>
+          当排放通过贸易在国家之间转移之后，我们还需要追问：这些排放背后，是哪些企业在持续供应化石能源、组织高碳生产，并从中获利？
         </p>
         <div class="section-insight" id="insight-majors"></div>
         <div id="text-majors"></div>
@@ -188,6 +276,12 @@
       </div>
     </section>
 
+    <section class="closing-summary" aria-label="碳责任追踪总结">
+      <p>
+        碳责任不是单一层面的责任。国际政策决定约束框架，经济结构决定脱钩难度，贸易关系决定责任转移，而企业主体则揭示了排放控制权和收益归属。真正有效的碳责任追踪，需要同时看国家、消费和企业。
+      </p>
+    </section>
+
     <section class="methodology" id="methodology">
       <h2>方法与说明</h2>
       <div class="methodology-grid">
@@ -201,7 +295,7 @@
         </article>
         <article>
           <h3>数据来源</h3>
-          <p>当前为演示用小样本数据。正式版建议替换为 OWID、Climate Policy Database、OECD TiVA 与 Carbon Majors Database 的清洗结果。</p>
+          <p> OWID、Climate Policy Database、OECD TiVA 与 Carbon Majors Database 的清洗结果。</p>
         </article>
         <article>
           <h3>开发流程</h3>
@@ -217,22 +311,22 @@
 
   <dialog class="decoupling-dialog" id="decoupling-dialog" aria-labelledby="decoupling-dialog-title">
     <div class="decoupling-dialog__inner">
-      <h3 id="decoupling-dialog-title">脱钩状态定义</h3>
+      <h3 id="decoupling-dialog-title">脱钩状态与国家标签说明</h3>
       <dl>
         <div>
           <dt>完全脱钩</dt>
           <dd>GDP 增长 &gt; 0，且 CO2 增长 &lt; 0。</dd>
         </div>
         <div>
-          <dt>强脱钩</dt>
+          <dt>基本脱钩</dt>
           <dd>GDP 增长 &gt; 0，且 GDP 增长至少是 CO2 增长的 2 倍，或 GDP 增长比 CO2 增长至少多 10 个百分点。</dd>
         </div>
         <div>
-          <dt>相对脱钩</dt>
-          <dd>GDP 增长 &gt; 0，CO2 增长 &gt;= 0，且状态介于强脱钩和未脱钩之间。</dd>
+          <dt>未脱钩</dt>
+          <dd>GDP 增长 &gt; 0，CO2 增长 &gt;= 0，且状态介于基本脱钩和依赖之间。</dd>
         </div>
         <div>
-          <dt>未脱钩</dt>
+          <dt>依赖</dt>
           <dd>GDP 增长 &gt; 0，CO2 增长 &gt;= 0，且 CO2 增长至少是 GDP 增长的 1.5 倍，或 CO2 增长比 GDP 增长至少多 10 个百分点。</dd>
         </div>
         <div>
@@ -244,11 +338,48 @@
           <dd>不满足以上条件的状态。</dd>
         </div>
       </dl>
+      <section class="dialog-country-tags" aria-labelledby="dialog-country-tags-title">
+        <h4 id="dialog-country-tags-title">图表展示国家与增长模式标签</h4>
+        <p>当前图表展示 31 个国家；蒙古和卡塔尔保留在 CSV 中，但因极端值较多未显示在图表内。未设置标签的国家以“未设置特定增长模式标签”标注。</p>
+        <ul class="country-tag-list">
+          <li><span>阿根廷 Argentina</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>澳大利亚 Australia</span><small>未设置特定增长模式标签</small></li>
+          <li><span>孟加拉国 Bangladesh</span><small>工业化早中期；出口制造型增长；交通、航空、物流快速扩张</small></li>
+          <li><span>巴西 Brazil</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>加拿大 Canada</span><small>未设置特定增长模式标签</small></li>
+          <li><span>中国 China</span><small>工业化早中期；能源结构以煤炭为主；出口制造型增长；交通、航空、物流快速扩张</small></li>
+          <li><span>埃及 Egypt</span><small>工业化早中期；交通、航空、物流快速扩张</small></li>
+          <li><span>法国 France</span><small>未设置特定增长模式标签</small></li>
+          <li><span>德国 Germany</span><small>未设置特定增长模式标签</small></li>
+          <li><span>印度 India</span><small>工业化早中期；能源结构以煤炭为主；出口制造型增长；交通、航空、物流快速扩张</small></li>
+          <li><span>印度尼西亚 Indonesia</span><small>工业化早中期；能源结构以煤炭为主；出口制造型增长；资源出口型经济</small></li>
+          <li><span>伊朗 Iran</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>意大利 Italy</span><small>未设置特定增长模式标签</small></li>
+          <li><span>日本 Japan</span><small>未设置特定增长模式标签</small></li>
+          <li><span>哈萨克斯坦 Kazakhstan</span><small>能源结构以煤炭为主；资源出口型经济</small></li>
+          <li><span>马来西亚 Malaysia</span><small>出口制造型增长；资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>墨西哥 Mexico</span><small>出口制造型增长；交通、航空、物流快速扩张；资源出口型经济</small></li>
+          <li><span>尼日利亚 Nigeria</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>巴基斯坦 Pakistan</span><small>工业化早中期；能源结构以煤炭为主；交通、航空、物流快速扩张</small></li>
+          <li><span>菲律宾 Philippines</span><small>工业化早中期；能源结构以煤炭为主；出口制造型增长；交通、航空、物流快速扩张</small></li>
+          <li><span>波兰 Poland</span><small>能源结构以煤炭为主；出口制造型增长</small></li>
+          <li><span>俄罗斯 Russia</span><small>资源出口型经济；能源结构以煤炭为主</small></li>
+          <li><span>沙特阿拉伯 Saudi Arabia</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>南非 South Africa</span><small>能源结构以煤炭为主；资源出口型经济；工业化早中期</small></li>
+          <li><span>韩国 South Korea</span><small>未设置特定增长模式标签</small></li>
+          <li><span>泰国 Thailand</span><small>工业化早中期；出口制造型增长；交通、航空、物流快速扩张</small></li>
+          <li><span>土耳其 Turkey</span><small>工业化早中期；出口制造型增长；交通、航空、物流快速扩张</small></li>
+          <li><span>阿拉伯联合酋长国 United Arab Emirates</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>英国 United Kingdom</span><small>未设置特定增长模式标签</small></li>
+          <li><span>美国 United States</span><small>未设置特定增长模式标签</small></li>
+          <li><span>越南 Vietnam</span><small>工业化早中期；能源结构以煤炭为主；出口制造型增长；交通、航空、物流快速扩张</small></li>
+        </ul>
+      </section>
       <button class="decoupling-dialog__close" id="decoupling-dialog-close" type="button">关闭</button>
     </div>
   </dialog>
 
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/main.js?v=20260510-policy-insight"></script>
 </body>
 </html>
 
