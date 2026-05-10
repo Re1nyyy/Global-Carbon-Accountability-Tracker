@@ -445,9 +445,9 @@ function getMapLayout() {
   const container = document.querySelector("#chart-trade");
   const width = Math.max(300, container?.clientWidth ?? 680);
   const isMobile = width < 560;
-  const height = isMobile ? Math.max(210, Math.min(270, width * 0.66)) : 330;
-  const scale = isMobile ? width * 0.155 : Math.min(112, width * 0.16);
-  const translate = [width / 2, isMobile ? height / 2 + 8 : 190];
+  const height = isMobile ? Math.max(200, Math.min(250, width * 0.62)) : 290;
+  const scale = isMobile ? width * 0.145 : Math.min(98, width * 0.14);
+  const translate = [width / 2, isMobile ? height / 2 + 6 : 168];
 
   return { height, scale, translate };
 }

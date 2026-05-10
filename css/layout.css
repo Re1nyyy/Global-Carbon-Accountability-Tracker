@@ -34,6 +34,7 @@
 
 .intro-panel,
 .story-section,
+.closing-summary,
 .methodology {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
@@ -56,7 +57,14 @@
   border-top: 1px solid var(--color-line);
 }
 
+.gdp-page-section {
+  box-sizing: border-box;
+  grid-template-columns: minmax(360px, 0.82fr) minmax(620px, 1.18fr);
+  gap: 24px;
+}
+
 .section-copy {
+  min-width: 0;
   position: sticky;
   top: 28px;
 }
@@ -68,7 +76,7 @@
 .gdp-page-section {
   grid-template-columns: minmax(420px, 1.08fr) minmax(440px, 0.92fr);
   gap: 36px;
-  padding-top: 48px;
+  padding: 48px 0 88px;
 }
 
 .gdp-page-section .section-copy {
@@ -107,7 +115,7 @@
 }
 
 .trade-story {
-  grid-template-columns: minmax(300px, 0.76fr) minmax(520px, 1.24fr);
+  grid-template-columns: minmax(340px, 0.92fr) minmax(420px, 1.08fr);
   align-items: start;
 }
 
@@ -163,6 +171,9 @@
 }
 
 .trade-visual {
+  width: 100%;
+  max-width: 620px;
+  justify-self: end;
   position: sticky;
   top: 28px;
 }
@@ -292,9 +303,95 @@
   width: 100%;
 }
 
+.trade-status-summary {
+  padding: 18px 20px;
+  border: 1px solid rgba(196, 59, 47, 0.18);
+  background: rgba(255, 253, 248, 0.86);
+}
+
+.trade-status-summary h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.trade-status-summary p {
+  margin: 0 0 12px;
+  color: #3d3b36;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.trade-status-table-wrap {
+  overflow-x: auto;
+}
+
+.trade-status-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+.trade-status-table th,
+.trade-status-table td {
+  border-bottom: 1px solid rgba(32, 33, 36, 0.1);
+  padding: 8px 10px;
+  text-align: right;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.trade-status-table th:first-child,
+.trade-status-table td:first-child {
+  text-align: left;
+}
+
+.trade-status-table thead th {
+  color: var(--color-muted);
+  font-weight: 800;
+}
+
+.trade-status-table tbody th {
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.trade-status-table tbody tr:last-child th,
+.trade-status-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.trade-status-table strong {
+  color: var(--color-accent);
+}
+
+.trade-status-summary__note {
+  margin-top: 12px !important;
+  margin-bottom: 0 !important;
+  color: var(--color-text) !important;
+  font-weight: 700;
+}
+
 .methodology {
   padding: 76px 0 88px;
   border-top: 1px solid var(--color-line);
+}
+
+.closing-summary {
+  padding: 56px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.closing-summary p {
+  max-width: 980px;
+  margin: 0;
+  padding-left: 24px;
+  border-left: 5px solid var(--color-accent);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.65;
 }
 
 .methodology-grid {
@@ -347,6 +444,19 @@
   .story-section {
     gap: 24px;
     padding: 64px 0;
+  }
+
+  .closing-summary {
+    padding: 44px 0;
+  }
+
+  .closing-summary p {
+    padding-left: 18px;
+    font-size: 20px;
+  }
+
+  .gdp-page-section {
+    grid-template-columns: 1fr;
   }
 }
 
