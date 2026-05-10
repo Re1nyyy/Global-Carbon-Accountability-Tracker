@@ -1,4 +1,4 @@
-﻿import { loadCsv } from "../data-loader.js";
+import { loadCsv } from "../data-loader.js";
 import { formatGt } from "../utils/format.js";
 import { setInsight } from "../utils/dom.js";
 
@@ -50,7 +50,7 @@ const metricConfig = {
     legendTitle: "人均净进口碳（tCO2/person）",
     colorRange: ["#1d6f78", "#f6efe0", "#c43b2f"],
     legendLabels: ["-3", "0", "+5"],
-    description: "蓝色表示碳责任承担者，红色表示碳责任转嫁者；0 始终是中性色分界。",
+    description: "蓝色表示碳责任承担者，红色表示碳责任转嫁者。",
     number: "03",
     heading: "第三步：谁在转嫁，谁在代工？",
     body: "碳责任转移比较消费足迹和领土排放。正值表示消费责任高于本国烟囱，是碳责任转嫁者；负值表示为他国消费承担了更多生产排放，是全球供应链中的代工承担者。"
@@ -104,7 +104,7 @@ const countryNamesZh = {
   Thailand: "泰国",
   Turkey: "土耳其",
   Ukraine: "乌克兰",
-  "United Arab Emirates": "阿拉伯联合酋长国",
+  "United Arab Emirates": "阿联酋",
   "United Kingdom": "英国",
   "United States": "美国",
   Vietnam: "越南"
