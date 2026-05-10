@@ -2,8 +2,7 @@
 
 一个围绕全球碳责任展开的交互式数据文档。
 
-在线访问：  
-https://re1nyyy.github.io/Global-Carbon-Accountability-Tracker/
+### 🔗 [在线预览地址] https://re1nyyy.github.io/Global-Carbon-Accountability-Tracker/
 
 本项目试图回答一个问题：当我们讨论“碳责任”时，是否只看一个国家或企业排放了多少碳，还是应该进一步追问这些排放由什么经济活动、政策选择、消费需求和企业生产结构共同造成？
 
