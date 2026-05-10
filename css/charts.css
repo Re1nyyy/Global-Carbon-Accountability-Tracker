@@ -5,7 +5,7 @@
   padding: 18px;
   border: 1px solid var(--color-line);
   background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -68,10 +68,11 @@
   margin-top: 10px;
   padding: 10px 12px;
   border: 1px solid var(--color-line);
-  background: rgba(255, 253, 248, 0.72);
+  background: rgba(255, 253, 248, 0.76);
   color: #3d3b36;
   font-size: 12.5px;
   line-height: 1.55;
+  box-shadow: 0 8px 22px rgba(48, 39, 25, 0.05);
 }
 
 .chart-explainer p {
@@ -97,19 +98,25 @@
 .decoupling-help-button {
   flex: 0 0 auto;
   padding: 6px 10px;
-  border: 1px solid var(--color-text);
-  background: var(--color-text);
-  color: var(--color-bg);
+  border: 1px solid rgba(196, 59, 47, 0.42);
+  background: rgba(196, 59, 47, 0.08);
+  color: var(--color-accent);
   font: inherit;
+  font-weight: 800;
   font-size: 12.5px;
   cursor: pointer;
+}
+
+.decoupling-help-button:hover {
+  border-color: var(--color-accent);
+  background: rgba(196, 59, 47, 0.13);
 }
 
 .decoupling-dialog {
   width: min(780px, calc(100vw - 32px));
   border: 1px solid var(--color-line);
   padding: 0;
-  background: var(--color-bg);
+  background: var(--color-surface);
   color: var(--color-text);
   box-shadow: 0 22px 70px rgba(48, 39, 25, 0.24);
 }
@@ -176,7 +183,7 @@
   min-width: 0;
   border: 1px solid rgba(32, 33, 36, 0.12);
   padding: 8px 10px;
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 253, 248, 0.72);
 }
 
 .country-tag-list span {
@@ -196,10 +203,11 @@
 .decoupling-dialog__close {
   margin-top: 18px;
   padding: 8px 14px;
-  border: 1px solid var(--color-text);
-  background: var(--color-text);
-  color: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-surface);
   font: inherit;
+  font-weight: 800;
   cursor: pointer;
 }
 
@@ -221,16 +229,18 @@
   margin-top: 14px;
   padding: 14px 16px;
   border: 1px solid var(--color-line);
-  background: rgba(255, 253, 248, 0.72);
+  background: rgba(255, 253, 248, 0.82);
+  box-shadow: 0 10px 28px rgba(48, 39, 25, 0.06);
 }
 
 .chart-controls button {
   min-width: 72px;
   padding: 9px 14px;
-  border: 1px solid var(--color-text);
-  background: var(--color-text);
-  color: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-surface);
   font: inherit;
+  font-weight: 800;
   cursor: pointer;
 }
 
@@ -280,6 +290,7 @@
 .trade-map-legend__bar {
   height: 12px;
   background: var(--trade-legend-gradient);
+  box-shadow: inset 0 0 0 1px rgba(32, 33, 36, 0.06);
 }
 
 .trade-map-legend__labels {
@@ -371,25 +382,33 @@
   z-index: 20;
 }
 
+.chart-toggle-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
 .chart-toggle-btn {
   padding: 8px 22px;
   border: 1px solid var(--color-line);
   border-radius: 8px;
-  background: var(--color-surface);
+  background: rgba(255, 253, 248, 0.88);
   color: var(--color-text);
   font-size: 0.9rem;
+  font-weight: 800;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .chart-toggle-btn.active {
-  background: var(--color-selected, #d95f02);
+  background: var(--color-accent);
   color: #fff;
-  border-color: var(--color-selected, #d95f02);
+  border-color: var(--color-accent);
 }
 
 .chart-toggle-btn:hover:not(.active) {
-  border-color: var(--color-selected, #d95f02);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 /* ── Stage: Grid 物理叠层，两个容器永远占据同一网格单元 ── */

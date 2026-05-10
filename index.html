@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>碳责任的四个视角</title>
+  <title>追影：贸易全球化中的碳责任追踪</title>
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css?v=20260510-trade-status-table">
@@ -19,24 +19,51 @@
 <body>
   <header class="hero">
     <div class="hero__inner">
-      <p class="eyebrow">Interactive Climate Responsibility Document</p>
-      <h1>碳责任的四个视角</h1>
+      <p class="eyebrow">Global Carbon Accountability Tracker</p>
+      <h1 class="hero__title">
+        <span class="hero__title-main">追影</span>
+        <span class="hero__title-sub">贸易全球化中的碳责任追踪</span>
+      </h1>
       <p class="hero__dek">
-        国际政策、经济增长、贸易转移与企业排放分别揭示了碳责任的不同侧面。本页面采用四个互不依赖的交互模块，帮助读者从多个角度探索同一个问题。
+        碳排放留下的并不只是一串总量数字。它沿着经济增长、国际协议、全球供应链和企业生产一路移动：有时出现在本国烟囱里，有时藏在进口商品背后，有时被政策承诺照亮，有时又集中到少数产业主体身上。请沿着四个交互视角追踪这些“碳影”，判断谁在减排，谁在转移责任，谁又在承担被外包的成本。
       </p>
+      <details class="project-doc" id="project-doc">
+        <summary>项目说明文档</summary>
+        <div class="methodology-grid">
+          <article>
+            <h3>1. 我们的可视化方案旨在解答什么问题？</h3>
+            <p>本作品围绕一个核心问题展开：当我们讨论“碳责任”时，是否只看一个国家或主体排放了多少碳，还是应该进一步追问这些排放由什么经济活动、政策选择、消费需求和企业生产结构共同造成？</p>
+            <p>因此，网页没有把碳排放处理成单一的总量排名，而是拆成四个连续视角：张凯翔负责第一部分“GDP 与碳排放”，讨论经济增长是否必然带来更高排放；王智奇负责第二部分“政策与排放拐点”，观察国际气候协议与排放趋势之间的关系；洪玺负责第三部分“贸易与碳责任”，比较领土排放、消费足迹和碳责任转移；陈炜达负责第四部分“企业与排放责任”，将责任追踪到高排放企业和产业主体。</p>
+            <p>四个部分共同回答的是：碳责任不是一个孤立数字，而是由发展水平、政策干预、全球贸易和企业生产共同塑造的责任结构。</p>
+          </article>
+          <article>
+            <h3>2. 设计决策：为什么选择这些可视化编码与交互？</h3>
+            <p>我们的整体原则是“简单但有效”：每个模块只服务一个清晰问题，避免堆叠复杂图表。交互方式统一采用文字引导、按钮切换、悬停查看细节和年份控制，让读者先理解问题，再探索证据。</p>
+            <p>第一部分使用气泡图和趋势对比，因为 GDP、人口、排放总量和碳强度之间同时存在规模差异和发展阶段差异。相比普通柱状图，气泡图更适合同时表达经济规模、排放水平和国家间差异。</p>
+            <p>第二部分使用时间轴和折线趋势，因为政策问题本质上与时间有关。我们考虑过只做政策卡片列表，但列表无法展示政策节点前后的排放变化，因此最终在全球排放趋势上标注关键政策点。</p>
+            <p>第三部分使用世界地图、视角切换和年份滑杆。最初考虑过分组柱状图，但柱状图只能比较少数国家，难以体现全球供应链中的空间分布。最终选择地图，是因为“碳责任转移”本身具有地理含义：消费国、生产国和资源型国家在空间上并不均匀分布。地图颜色使用人均值，避免大国总量天然压倒小国；总量信息通过悬停提示补充。碳责任转移视角使用红蓝发散色，0 作为中性分界，帮助读者区分“转嫁者”和“承担者”。</p>
+            <p>第四部分使用企业排行和占比展示，因为企业排放责任更适合通过排名和份额理解。相比地图或时间轴，排行图能更直接地显示少数头部企业在排放结构中的集中程度。</p>
+          </article>
+          <article>
+            <h3>3. 外部资源与数据来源</h3>
+            <p>本项目主要使用公开数据源，并在清洗后统一放入项目数据目录中。第一部分和第三部分主要使用 Our World in Data / Global Carbon Budget，包括国家年度 CO2 排放、消费端 CO2 排放、人口和 GDP 等数据。</p>
+            <p>第二部分参考 Climate Policy Database 与 UNFCCC 相关资料，用于整理《京都议定书》《巴黎协定》等国际气候政策节点及其说明。第四部分使用 Carbon Majors Database，用于展示主要化石燃料企业和高排放企业的排放责任。</p>
+            <p>第三部分世界地图底图使用 Vega Datasets 提供的 `world-110m` TopoJSON。项目图表由 Vega-Lite、D3 与原生 JavaScript 实现。部分叙事方式参考了交互式数据新闻和 explorable explanation 的表达理念，尤其是 Bret Victor 所强调的“让读者通过操作理解概念”的思路；但本项目的数据清洗、模块结构、交互实现和叙事文案均由小组根据课程主题自行完成。</p>
+            <p>需要说明的是，不同数据源的碳排放统计口径并不完全一致。例如，消费端排放通常不包含土地利用变化，也不一定将国际航空和航运完整分配到单个国家。因此，本项目强调在一致口径下进行相对比较，用于揭示结构性问题，而不是给出绝对精确的责任判决。</p>
+          </article>
+          <article>
+            <h3>4. 开发流程、成员分工与过程评述</h3>
+            <p>本项目采用模块化分工。张凯翔（1120232808）负责第一部分“GDP 与碳排放”，包括相关数据整理、GDP 与排放关系图表、脱钩状态说明和第一章文案。王智奇（1120231548）负责第二部分“政策与排放拐点”，包括政策节点整理、时间轴设计、政策说明文字和交互逻辑。洪玺（1120233593）负责第三部分“贸易与碳责任”，包括领土排放、消费足迹、净进口碳数据清洗，世界地图视角切换，年份滑杆，悬停解释文案和第三章叙事。陈炜达（1120233596）负责第四部分“企业与排放责任”，包括 Carbon Majors 数据整理、企业排行图、企业占比展示和第四章说明文字。</p>
+            <p>四名成员合计开发投入约 50 个工时。其中，数据清洗与口径统一约 14 小时，图表和交互实现约 20 小时，页面整合与视觉调整约 9 小时，测试、移动端适配和说明文案约 7 小时。</p>
+            <p>最耗时的环节主要有三个。第一是数据口径统一：不同数据源的字段名称、单位、年份覆盖和国家名称并不一致，需要反复清洗和校验。第二是交互逻辑调试：尤其是地图视角切换、年份滑杆、悬停说明和移动端适配，需要在表达清楚和界面稳定之间不断调整。第三是模块整合：四个模块由不同成员开发，最终需要统一页面风格、图表尺寸、交互方式和叙事节奏，避免读者感觉是在浏览四个割裂的小作业。</p>
+            <p>开发过程中我们逐渐认识到，数据可视化的难点不只是“把图做出来”，而是决定图表到底要帮助读者看见什么。最终版本让每个模块围绕一个明确问题展开：经济是否脱钩、政策是否有效、贸易是否转移责任、企业是否集中排放。这样读者不仅能看到数据，也能理解数据背后的责任结构。</p>
+          </article>
+        </div>
+      </details>
     </div>
   </header>
 
   <main>
-    <section class="intro-panel">
-      <div>
-        <h2>如何阅读</h2>
-        <p>
-          点击正文中带下划线的关键词，只会改变本板块图表和说明文字，不会影响其他板块。
-        </p>
-      </div>
-    </section>
-
     <section class="story-section story-section--policy" id="section-policy">
       <div class="section-copy">
         <p class="section-kicker">视角一：政策干预</p>
@@ -265,9 +292,9 @@
         <div id="text-majors"></div>
       </div>
       <div class="section-visual">
-        <div class="chart-toggle-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
-          <button class="chart-toggle-btn active" data-view="map">🌍 空间分布</button>
-          <button class="chart-toggle-btn" data-view="bar">📊 排放排名</button>
+        <div class="chart-toggle-group">
+          <button class="chart-toggle-btn active" data-view="map">空间分布</button>
+          <button class="chart-toggle-btn" data-view="bar">排放排名</button>
         </div>
         <div id="vis-majors-grid-stage" class="chart-grid-stage">
           <div id="vis-majors-map" class="chart chart-view active" aria-label="碳排大国分布地图"></div>
@@ -277,32 +304,15 @@
     </section>
 
     <section class="closing-summary" aria-label="碳责任追踪总结">
-      <p>
-        碳责任不是单一层面的责任。国际政策决定约束框架，经济结构决定脱钩难度，贸易关系决定责任转移，而企业主体则揭示了排放控制权和收益归属。真正有效的碳责任追踪，需要同时看国家、消费和企业。
-      </p>
-    </section>
-
-    <section class="methodology" id="methodology">
-      <h2>方法与说明</h2>
-      <div class="methodology-grid">
-        <article>
-          <h3>项目问题</h3>
-          <p>本作品尝试回答：当我们讨论碳责任时，经济、政策、贸易和企业分别揭示了哪些不同事实？</p>
-        </article>
-        <article>
-          <h3>设计决策</h3>
-          <p>四个模块技术上隔离，避免强制联动造成理解负担；每个模块保留文字触发图表的交互，强调解释性阅读体验。</p>
-        </article>
-        <article>
-          <h3>数据来源</h3>
-          <p> OWID、Climate Policy Database、OECD TiVA 与 Carbon Majors Database 的清洗结果。</p>
-        </article>
-        <article>
-          <h3>开发流程</h3>
-          <p>四名成员按模块分工：GDP、政策、贸易、企业。公共页面、样式和工具函数由一名成员统一维护。</p>
-        </article>
+      <div class="closing-summary__inner">
+        <p class="section-kicker">结语</p>
+        <h2>碳责任需要被追踪，而不只是被统计</h2>
+        <p>
+          碳责任不是单一层面的责任。国际政策决定约束框架，经济结构决定脱钩难度，贸易关系决定责任转移，而企业主体则揭示了排放控制权和收益归属。真正有效的碳责任追踪，需要同时看国家、消费和企业。
+        </p>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer">
@@ -369,7 +379,7 @@
           <li><span>韩国 South Korea</span><small>未设置特定增长模式标签</small></li>
           <li><span>泰国 Thailand</span><small>工业化早中期；出口制造型增长；交通、航空、物流快速扩张</small></li>
           <li><span>土耳其 Turkey</span><small>工业化早中期；出口制造型增长；交通、航空、物流快速扩张</small></li>
-          <li><span>阿拉伯联合酋长国 United Arab Emirates</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
+          <li><span>阿联酋 United Arab Emirates</span><small>资源出口型经济；交通、航空、物流快速扩张</small></li>
           <li><span>英国 United Kingdom</span><small>未设置特定增长模式标签</small></li>
           <li><span>美国 United States</span><small>未设置特定增长模式标签</small></li>
           <li><span>越南 Vietnam</span><small>工业化早中期；能源结构以煤炭为主；出口制造型增长；交通、航空、物流快速扩张</small></li>

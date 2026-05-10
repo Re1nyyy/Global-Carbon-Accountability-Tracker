@@ -1,13 +1,16 @@
 :root {
   --color-bg: #f7f4ee;
   --color-surface: #fffdf8;
+  --color-surface-soft: rgba(255, 253, 248, 0.76);
   --color-text: #202124;
   --color-muted: #62615d;
   --color-line: #d9d2c5;
+  --color-line-strong: #c9bba9;
   --color-accent: #c43b2f;
   --color-accent-2: #1d6f78;
   --color-accent-3: #735f2d;
   --shadow-soft: 0 18px 50px rgba(48, 39, 25, 0.11);
+  --shadow-card: 0 14px 38px rgba(48, 39, 25, 0.09);
   --font-sans: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   --font-serif: Georgia, "Noto Serif SC", "Songti SC", serif;
 }
@@ -18,7 +21,10 @@
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.42), rgba(247, 244, 238, 0) 420px),
+    linear-gradient(90deg, rgba(29, 111, 120, 0.035), transparent 36%, rgba(196, 59, 47, 0.035)),
+    var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
   line-height: 1.72;
@@ -60,4 +66,28 @@ p {
 
 a {
   color: var(--color-accent-2);
+}
+
+button,
+summary,
+select,
+input {
+  font-family: inherit;
+}
+
+button,
+summary {
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+button:focus-visible,
+summary:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(29, 111, 120, 0.22);
+  outline-offset: 3px;
 }
